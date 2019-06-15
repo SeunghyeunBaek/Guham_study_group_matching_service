@@ -10,8 +10,8 @@
     {% csrf_token %}
     {% bootstrap_form form %}
     {% buttons %}
-        <button type="submit" class="btn btn-outline-primary">글쓰기</button>
-        <a href="{% url 'posts:index' %}" class="btn btn-outline-warning">취소</a>
+        <button type="submit" class="btn btn-outline-primary">posts:create</button>
+        <a href="{% url 'posts:index' %}" class="btn btn-outline-warning">posts:index</a>
     {% endbuttons %}
 </form>
 {% endblock %}

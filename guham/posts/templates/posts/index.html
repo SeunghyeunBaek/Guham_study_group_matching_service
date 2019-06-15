@@ -9,8 +9,9 @@
     <img src="https://picsum.photos/id/{{ post.id }}/250/50" class="card-img-top">
     <div class="card-body">
         <h5 class="card-title">{{post.title}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">user: {{post.user}}</h6>
         <p class="card-text">{{post.summary}}</p>
-        <a href="{% url 'posts:detail' post.id %}" class="btn btn-primary">content</a>
+        <a href="{% url 'posts:detail' post.id %}" class="btn btn-outline-primary">posts:detail</a>
     </div>
 </div>
 {% endfor %}
