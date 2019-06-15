@@ -17,10 +17,13 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="{% url 'posts:index' %}">posts:index<span class="sr-only">(current)</span></a>
+                {% if user.is_authenticated %}
+                <a class="nav-item nav-link" href="{% url 'accounts:logout' %}">accounts:logout</a>
                 <a class="nav-item nav-link" href="{% url 'posts:create' %}">posts:create</a>
+                {% else %}
                 <a class="nav-item nav-link" href="{% url 'accounts:signup' %}">accounts:signup</a>
                 <a class="nav-item nav-link" href="{% url 'accounts:login' %}">accounts:login</a>
-                <a class="nav-item nav-link" href="{% url 'accounts:logout' %}">accounts:logout</a>
+                {% endif %}
                 <a class="nav-item nav-link" href="#">current user = <b>{{user}}</b></a>
             </div>
         </div>
