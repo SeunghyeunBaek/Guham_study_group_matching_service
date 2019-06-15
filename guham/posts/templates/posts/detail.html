@@ -1,0 +1,12 @@
+{% extends 'posts/base.html' %}
+
+{% block title %} posts:detail {% endblock %}
+
+{% block body %}
+<h1>title: {{post_selected.title}}</h1>
+<p>summary(인덱스 페이지에 보이는 내용): {{post_selected.summary}}</p>
+<p>contents: {{post_selected.content}}</p>
+<a href="{% url 'posts:index' %}" class="btn btn-primary">index</a>
+<a href="{% url 'posts:delete' post_selected.id %}" class="btn btn-danger">delete</a>
+<a href="{% url 'posts:update' post_selected.id %}" class="btn btn-warning">update</a>
+{% endblock %}

@@ -6,12 +6,12 @@
 
 {% block body %}
 {% load bootstrap4 %}
-<form action="{% url 'posts:create' %}" method="POST">
+<form action="" method="POST">
     {% csrf_token %}
     {% bootstrap_form form %}
     {% buttons %}
-    <button type="submit" class="btn btn-outline-primary">글쓰기</button>
-    <a href="{% url 'posts:index' %}" class="btn btn-outline-warning">취소</a>
+        <button type="submit" class="btn btn-outline-primary">글쓰기</button>
+        <a href="{% url 'posts:index' %}" class="btn btn-outline-warning">취소</a>
     {% endbuttons %}
 </form>
 {% endblock %}

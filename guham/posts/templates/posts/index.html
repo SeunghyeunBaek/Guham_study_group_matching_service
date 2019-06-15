@@ -6,12 +6,12 @@
 
 {% for post in posts %}
 <div class="card" style="">
-  <img src="https://picsum.photos/id/{{ post.id }}/250/50" class="card-img-top">
-  <div class="card-body">
-    <h5 class="card-title">{{post.title}}</h5>
-    <p class="card-text">{{post.content}}</p>
-    <a href="#" class="btn btn-primary">글 확인</a>
-  </div>
+    <img src="https://picsum.photos/id/{{ post.id }}/250/50" class="card-img-top">
+    <div class="card-body">
+        <h5 class="card-title">{{post.title}}</h5>
+        <p class="card-text">{{post.summary}}</p>
+        <a href="{% url 'posts:detail' post.id %}" class="btn btn-primary">content</a>
+    </div>
 </div>
 {% endfor %}
 
