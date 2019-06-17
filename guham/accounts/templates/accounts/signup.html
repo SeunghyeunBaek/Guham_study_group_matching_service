@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'posts/base.html' %}
+
+{% block title %} {% endblock %}
+
+{% block body %}
+{% load bootstrap4 %}
+<form action="{% url 'accounts:signup' %}" method="POST">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+        <button type="submit" class="btn btn-outline-primary">accounts:signup</button>
+        <a href="{% url 'posts:index' %}" class="btn btn-outline-warning">posts:index</a>
+    {% endbuttons %}
+</form>
+{% endblock %}

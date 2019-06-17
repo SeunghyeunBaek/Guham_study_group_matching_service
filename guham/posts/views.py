@@ -24,7 +24,6 @@ def detail(request, post_id):
 # CREATE
 def create(request):
     if request.method == 'POST':
-        raise()
         form = PostForm(request.POST)
         if form.is_valid():
             form.save()

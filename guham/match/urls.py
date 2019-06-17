@@ -9,3 +9,4 @@ urlpatterns = [
     path('success/', views.success, name='success'),  # 매칭 완료
     path('accept/', views.accept, name='accept'),  # 매칭 승낙
 ]
+
