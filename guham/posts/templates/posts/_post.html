@@ -1,0 +1,15 @@
+{% load bootstrap4 %}
+<div class="card">
+    <div class="card-body">
+        <img src="https://picsum.photos/id/{{ post.id }}/250/50" class="card-img-top">
+        <p class="card-text"><strong>{{ post.title }}</strong>
+            <br> category : {{ post.study_category }}
+            <br>people : {{ post.number_people }}
+            <br>place : {{ post.study_place }}
+            <br>time : {{ post.study_day }} : {{ post.study_time }}
+            <br>{{ post.content }}
+            <br>hashtag : {{ post.summary }}
+        </p>
+        <a href="{% url 'posts:detail' post.id %}" class="btn btn-outline-primary">posts:detail</a>
+    </div>
+</div>
