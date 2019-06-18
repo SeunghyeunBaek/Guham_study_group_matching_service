@@ -1,6 +1,7 @@
 from django.forms import ModelForm
 from .models import MatchPost
 
+
 class MatchPostForm(ModelForm):
     class Meta:
         model = MatchPost

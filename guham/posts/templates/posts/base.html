@@ -22,7 +22,7 @@
                 <a class="nav-item nav-link" href="{% url 'posts:create' %}">posts:create</a>
                 <a class="nav-item nav-link" href="{% url 'match:set_conditions' %}">match:set_conditions</a>
                 {% if user.is_authenticated %}
-                <a class="nav-item nav-link" href="#">current user = <b>{{user}}</b></a>
+                <a class="nav-item nav-link" href="{% url 'accounts:user_page' user.id %}">current user = <b>{{user}}</b></a>
                 <a class="nav-item nav-link" href="{% url 'accounts:logout' %}">accounts:logout</a>
                 {% else %}
                 <a class="nav-item nav-link" href="{% url 'accounts:login' %}">accounts:login</a>
