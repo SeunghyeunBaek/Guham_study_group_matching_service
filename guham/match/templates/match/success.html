@@ -5,6 +5,14 @@
 {% block body %}
 <h1>match:success</h1>
 <p>그룹 정보 출력</p>
+{% for post in posts %}
+<div class="container">
+    <div class="row">
+        {% include 'match/_post.html' %}
+    </div>
+</div>
+{% endfor %}
+
 <p>사용자 정보 출력</p>
 <a href="#" class="btn btn-outline-primary">승낙 => 그룹 생성자에게 메시지 보내기(미구현), match:accept</a>
 <a href="{% url 'match:set_conditions' %}" class="btn btn-outline-warning">취소 => match:set_conditions</a>

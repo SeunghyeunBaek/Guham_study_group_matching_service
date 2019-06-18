@@ -1,13 +1,23 @@
+# TODO 슬기 190618 set_conditions.html 수정
+
 {% extends 'posts/base.html' %}
 
 {% block title %} {% endblock %}
 
 {% block body %}
+{% load bootstrap4 %}
+
 <h1>match:set_conditions</h1>
 <div class="container">
     <p>사용자가 매칭 조건 입력</p>
 </div>
-<a href="{% url 'match:start' %}" class="btn btn-outline-primary">시작 => match:start</a>
-<a href="{% url 'posts:index' %}" class="btn btn-outline-warning">취소 => post:index</a>
 
+<form action="" method="POST">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+        <a href="{% url 'match:start' %}" class="btn btn-outline-primary">시작 => match:start</a>
+        <a href="{% url 'posts:index' %}" class="btn btn-outline-warning">취소 => post:index</a>
+    {% endbuttons %}
+</form>
 {% endblock %}

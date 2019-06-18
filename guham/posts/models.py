@@ -5,8 +5,6 @@ from django.conf import settings
 
 # TODO user = settings.AUTH_USER_MODEL  # user
 
-# TODO 슬기 190618 form data 수정
-
 STUDY_CATEGORY = [
     ('python', 'Python'),
     ('r', 'R'),
