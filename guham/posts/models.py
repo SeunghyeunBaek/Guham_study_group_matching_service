@@ -18,10 +18,10 @@ STUDY_PLACE = [
 ]
 
 STUDY_DAY = [
-    ('주1회','주1회'),
-    ('주2회','주2회'),
-    ('주3회','주3회'),
-    ('협의','협의'),
+    ('주1회', '주1회'),
+    ('주2회', '주2회'),
+    ('주3회', '주3회'),
+    ('협의', '협의'),
 ]
 
 STUDY_TIME = [
@@ -29,6 +29,7 @@ STUDY_TIME = [
     ('2hour', '2hour'),
     ('3hour', '3hour'),
 ]
+
 
 class Post(models.Model):
     title = models.CharField(max_length=50)
@@ -39,5 +40,4 @@ class Post(models.Model):
     study_time = models.CharField(max_length=10, choices=STUDY_TIME)
     content = models.TextField()
     summary = models.TextField()
-
-    # TODO user = models.ForeignKey(user, on_delete=models.CASCADE)
+    # user = models.ForeignKey(user, on_delete=models.CASCADE)
