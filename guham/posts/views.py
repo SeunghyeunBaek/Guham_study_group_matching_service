@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import PostForm
 from .models import Post
+from django.contrib.auth.decorators import login_required
 
 
 # READ ALL
@@ -11,7 +12,6 @@ def index(request):
     }
     return render(request, 'posts/index.html', context)
 
-
 # READ ONE
 def detail(request, post_id):
     post_selected = Post.objects.get(id=post_id)
@@ -20,13 +20,15 @@ def detail(request, post_id):
     }
     return render(request, 'posts/detail.html', context)
 
-
+@login_required
 # CREATE
 def create(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
-            form.save()
+            post = form.save(commit=False)
+            post.user = request.user
+            post.save()
             return redirect('posts:index')
         else:
             pass

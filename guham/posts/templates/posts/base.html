@@ -1,3 +1,4 @@
+{% load staticfiles  %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +9,7 @@
     <style>{% block style%}{% endblock %}
     </style>
 </head>
+
 <body>
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -28,12 +30,63 @@
                 <a class="nav-item nav-link" href="{% url 'accounts:login' %}">accounts:login</a>
                 <a class="nav-item nav-link" href="{% url 'accounts:signup' %}">accounts:signup</a>
                 {% endif %}
-
             </div>
         </div>
     </nav>
 </div>
-<div class="container my-3">
+
+{% if request.resolver_match.url_name == 'index' %}
+<div class="d-flex justify-content-center">
+    <img src="{% static 'logo2.png' %}" alt="">
+</div>
+
+<div class="container">
+    <form action="">
+        <div class="d-flex flex-row bd-highlight mb-2.5">
+          <div class="d-flex flex-wrap justify-content-center p-2 bd-highlight">
+              <button type="button" class="btn btn-primary w-100 p-2">
+                  지역
+              </button>
+              <select class="custom-select">
+                  <option selected>Open this select menu</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+          </div>
+          <div class="d-flex flex-wrap justify-content-center p-2 bd-highlight">
+              <button type="button" class="btn btn-primary w-100 p-2">
+                  지역
+              </button>
+              <select class="custom-select">
+                  <option selected>Open this select menu</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+          </div>
+          <div class="d-flex flex-wrap justify-content-center p-2 bd-highlight">
+              <button type="button" class="btn btn-primary w-100 p-2">
+                  지역
+              </button>
+              <select class="custom-select">
+                  <option selected>Open this select menu</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+          </div>
+<!--          <div class="p-2 bd-highlight">-->
+<!--              <button type="submit"><img src="{% static 'logo.png' width=50 %}" alt=""></button>-->
+<!--          </div>-->
+        </div>
+    </form>
+</div>
+{% endif %}
+
+
+
+<div class="container">
     {% block body %}
     {% endblock %}
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -45,6 +98,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+
 </div>
 </body>
 </html>
