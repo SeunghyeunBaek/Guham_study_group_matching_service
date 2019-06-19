@@ -14,10 +14,9 @@ def set_conditions(request):
             form.save()
             context = {
                 'form': form,
-                'match_id': form.id,
+                'match_id' : form.id,
             }
-            return render(request, 'match/start.html', context)
-            # return redirect("match:start", context )
+            return redirect("match:start", form.id)
         else:
             pass
     else:
@@ -26,7 +25,6 @@ def set_conditions(request):
         'form': form
     }
     return render(request, 'match/set_conditions.html', context)
-
 
 def start(request, match_id):
     form = MatchPost.objects.get(id=match_id)
