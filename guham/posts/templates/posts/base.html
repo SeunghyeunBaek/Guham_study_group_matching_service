@@ -24,7 +24,8 @@
                 <a class="nav-item nav-link" href="{% url 'posts:create' %}">posts:create</a>
                 <a class="nav-item nav-link" href="{% url 'match:set_conditions' %}">match:set_conditions</a>
                 {% if user.is_authenticated %}
-                <a class="nav-item nav-link" href="{% url 'accounts:user_page' user.id %}">current user = <b>{{user}}</b></a>
+                <a class="nav-item nav-link" href="{% url 'accounts:user_page' user.id %}">current user =
+                    <b>{{user}}</b></a>
                 <a class="nav-item nav-link" href="{% url 'accounts:logout' %}">accounts:logout</a>
                 {% else %}
                 <a class="nav-item nav-link" href="{% url 'accounts:login' %}">accounts:login</a>
@@ -41,50 +42,53 @@
 </div>
 
 <div class="container">
-    <form action="">
-        <div class="d-flex flex-row bd-highlight mb-2.5">
-          <div class="d-flex flex-wrap justify-content-center p-2 bd-highlight">
-              <button type="button" class="btn btn-primary w-100 p-2">
-                  지역
-              </button>
-              <select class="custom-select">
-                  <option selected>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+    <form action="{% url 'posts:search' %}" method="POST">
+        {% csrf_token %}
+        <div class="d-flex flex-row bd-highlight mb-2.5 ">
+            <!-- 셀렉트 박스 시작-->
+            <div class="d-flex flex-wrap justify-content-center p-2 bd-highlight">
+                <button type="button" class="btn btn-primary w-100 p-2">
+                    카테고리
+                </button>
+                <select class="custom-select" name="study_category">
+                    <option selected>카테고리</option>
+                    <option value="python">python</option>
+                    <option value="r">R</option>
+                    <option value="java">java</option>
                 </select>
-          </div>
-          <div class="d-flex flex-wrap justify-content-center p-2 bd-highlight">
-              <button type="button" class="btn btn-primary w-100 p-2">
-                  지역
-              </button>
-              <select class="custom-select">
-                  <option selected>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+            </div>
+            <div class="d-flex flex-wrap justify-content-center p-2 bd-highlight">
+                <button type="button" class="btn btn-primary w-100 p-2">
+                    장소
+                </button>
+                <select class="custom-select" name="study_place">
+                    <option selected>장소</option>
+                    <option value="강남">강남역</option>
+                    <option value="역삼">역삼역</option>
+                    <option value="교대">교대역</option>
                 </select>
-          </div>
-          <div class="d-flex flex-wrap justify-content-center p-2 bd-highlight">
-              <button type="button" class="btn btn-primary w-100 p-2">
-                  지역
-              </button>
-              <select class="custom-select">
-                  <option selected>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+            </div>
+            <div class="d-flex flex-wrap justify-content-center p-2 bd-highlight">
+                <button type="button" class="btn btn-primary w-100 p-2">
+                    지역
+                </button>
+                <select class="custom-select" name="study_time">
+                    <option selected>시간</option>
+                    <option value="주1회">주1회</option>
+                    <option value="주2회">주2회</option>
+                    <option value="주3회">주3회</option>
                 </select>
-          </div>
-<!--          <div class="p-2 bd-highlight">-->
-<!--              <button type="submit"><img src="{% static 'logo.png' width=50 %}" alt=""></button>-->
-<!--          </div>-->
+            </div>
+            <!--셀렉트 박스 끝-->
+            <!--검색 버튼 시작-->
+            <div class="p-2 bd-highlight">
+                <button type="submit"><img src="{% static 'logo.png' width=10 %}" alt=""></button>
+            </div>
+            <!--검색 버튼 끝-->
         </div>
     </form>
 </div>
 {% endif %}
-
-
 
 <div class="container">
     {% block body %}

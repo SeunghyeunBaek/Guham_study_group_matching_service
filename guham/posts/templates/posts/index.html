@@ -13,13 +13,17 @@
 {% endblock %}
 
 {% block body %}
-
-{% for post in posts %}
-<div class="container">
-    <div class="row">
-        {% include 'posts/_post.html' %}
-    </div>
-</div>
-{% endfor %}
+    {% if posts %}
+        {% for post in posts %}
+        <div class="container">
+            <div class="row">
+                {% include 'posts/_post.html' %}
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+    <p>검색결과가 없습니다</p>
+<a href="{% url 'posts:index' %}" class="btn btn-outline-primary">posts:index</a>
+    {% endif %}
 
 {% endblock %}

@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-app_name = 'match'
+app_name = 'match'  # 자동 매칭
 
 urlpatterns = [
     path('', views.set_conditions, name='set_conditions'),  # 매칭 전 조건 설정

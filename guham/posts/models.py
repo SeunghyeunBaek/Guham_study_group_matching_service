@@ -26,6 +26,7 @@ STUDY_TIME = [
     ('3hour', '3hour'),
 ]
 
+
 class Post(models.Model):
     title = models.CharField(max_length=50)
     study_category = models.CharField(max_length=10, choices=STUDY_CATEGORY)
