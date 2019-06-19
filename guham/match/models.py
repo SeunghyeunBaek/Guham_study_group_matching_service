@@ -34,9 +34,11 @@ STUDY_TIME = [
     ('3hour', '3hour'),
 ]
 
+
 class MatchPost(models.Model):
-    study_category = models.CharField(max_length=10, choices=STUDY_CATEGORY)
-    number_people = models.IntegerField()
-    study_place = models.CharField(max_length=10, choices=STUDY_PLACE)
-    study_day = models.CharField(max_length=10, choices=STUDY_DAY)
-    study_time = models.CharField(max_length=10, choices=STUDY_TIME)
+    study_category = models.CharField(max_length=10, choices=STUDY_CATEGORY)  # 스터디 카테고리
+    number_people = models.IntegerField()  # 인원수
+    study_place = models.CharField(max_length=10, choices=STUDY_PLACE)  # 스터디 장소
+    study_day = models.CharField(max_length=10, choices=STUDY_DAY)  # 주 n 회
+    study_time = models.CharField(max_length=10, choices=STUDY_TIME)  # 시간
+

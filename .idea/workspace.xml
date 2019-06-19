@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bfecb463-19e3-4de5-a716-3182c691d738" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/guham/match/templates/match/detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guham/match/templates/match/_post.html" beforeDir="false" afterPath="$PROJECT_DIR$/guham/match/templates/match/_post.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guham/match/templates/match/set_conditions.html" beforeDir="false" afterPath="$PROJECT_DIR$/guham/match/templates/match/set_conditions.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guham/match/templates/match/start.html" beforeDir="false" afterPath="$PROJECT_DIR$/guham/match/templates/match/start.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guham/match/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/guham/match/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guham/match/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/guham/match/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guham/match/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/guham/match/models.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,11 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/guham/match/templates/match/set_conditions.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="16" column="64" selection-start-line="16" selection-start-column="64" selection-end-line="16" selection-end-column="64" />
+            <state relative-caret-position="343">
+              <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -73,6 +68,24 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/guham/match/templates/match/success.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/guham/match/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="44" column="4" selection-start-line="44" selection-start-column="4" selection-end-line="44" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -102,7 +115,6 @@
         <option value="$PROJECT_DIR$/guham/match/form.py" />
         <option value="$PROJECT_DIR$/guham/posts/templates/posts/_post.html" />
         <option value="$PROJECT_DIR$/guham/match/templates/match/success.html" />
-        <option value="$PROJECT_DIR$/guham/match/models.py" />
         <option value="$PROJECT_DIR$/guham/.gitignore" />
         <option value="$PROJECT_DIR$/guham/guham/settings.py" />
         <option value="$PROJECT_DIR$/guham/accounts/models.py" />
@@ -120,6 +132,7 @@
         <option value="$PROJECT_DIR$/guham/match/views.py" />
         <option value="$PROJECT_DIR$/guham/match/templates/match/detail.html" />
         <option value="$PROJECT_DIR$/guham/match/templates/match/set_conditions.html" />
+        <option value="$PROJECT_DIR$/guham/match/models.py" />
       </list>
     </option>
   </component>
@@ -229,7 +242,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3298731" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3298731" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.14411765" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.26617646" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32991204" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -383,13 +396,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/guham/match/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="960">
-          <caret line="41" column="68" selection-start-line="41" selection-start-column="68" selection-end-line="41" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/guham/match/admin.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -416,13 +422,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3757">
           <caret line="170" column="9" lean-forward="true" selection-start-line="170" selection-start-column="9" selection-end-line="170" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/guham/match/templates/match/success.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>
@@ -507,19 +506,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/guham/match/templates/match/start.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/guham/match/templates/match/_post.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/guham/match/templates/match/detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="23" column="10" lean-forward="true" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/guham/match/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -537,10 +523,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/guham/match/templates/match/detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="23" column="10" lean-forward="true" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/guham/match/templates/match/_post.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/guham/match/templates/match/set_conditions.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="16" column="64" selection-start-line="16" selection-start-column="64" selection-end-line="16" selection-end-column="64" />
+        <state relative-caret-position="343">
+          <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/guham/match/templates/match/start.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/guham/match/templates/match/success.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/guham/match/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="44" column="4" selection-start-line="44" selection-start-column="4" selection-end-line="44" selection-end-column="4" />
         </state>
       </provider>
     </entry>
