@@ -1,0 +1,25 @@
+{% extends 'posts/base.html' %}
+
+{% block title %} {% endblock %}
+
+{% block body %}
+<div class="row">
+    <!--        프로필 이미지-->
+    <div class="col-4">
+        <img src="https://picsum.photos/id/{{user_selected.id}}/200/" class="rounded-circle">
+    </div>
+    <!--    기타 개인 정보 -->
+    <div class="col-8">
+        <h1>user name: {{user}}</h1>
+        <p> 모집 글 수: {{user_selected.post_set.count}}</p>
+    </div>
+</div>
+
+<!--해당 유저가 작성한 게시글-->
+<div class="card-columns">
+    {% for post in user.post_set.all %}
+    {% include 'posts/_post.html' %}
+    {% endfor %}
+</div>
+{% endblock %}
+

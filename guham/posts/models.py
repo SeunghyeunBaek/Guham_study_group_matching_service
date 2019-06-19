@@ -1,10 +1,6 @@
 from django.db import models
 from django.conf import settings
 
-# TODO from django.conf import settings
-
-# TODO user = settings.AUTH_USER_MODEL  # user
-
 STUDY_CATEGORY = [
     ('python', 'Python'),
     ('r', 'R'),
@@ -40,4 +36,4 @@ class Post(models.Model):
     study_time = models.CharField(max_length=10, choices=STUDY_TIME)
     content = models.TextField()
     summary = models.TextField()
-    # user = models.ForeignKey(user, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

@@ -2,7 +2,6 @@
 ### Python template
 # Byte-compiled / optimized / DLL files
 .idea/
-
 __pycache__/
 *.py[cod]
 *$py.class
@@ -63,7 +62,6 @@ coverage.xml
 # Django stuff:
 *.log
 local_settings.py
-db.sqlite3
 
 # Flask stuff:
 instance/
