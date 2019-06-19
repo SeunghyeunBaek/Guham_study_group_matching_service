@@ -1,0 +1,29 @@
+{% extends 'posts/base.html' %}
+
+{% block title %} {% endblock %}
+
+{% block body %}
+<h1>match:detail</h1>
+<div>
+    <h3>매칭 조건</h3>
+    <div class="container">
+        <div class="row">
+            {% load bootstrap4 %}
+            <div class="card">
+                <div class="card-body">
+                    <img src="https://picsum.photos/id/{{ form.id }}/250/50" class="card-img-top">
+                    <p class="card-text">
+                        <br>category : {{ form.study_category }}
+                        <br>people : {{ form.number_people }}
+                        <br>place : {{ form.study_place }}
+                        <br>time : {{ form.study_day }} : {{ form.study_time }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<p>소요 시간 출력</p>
+<a href="#" class="btn btn-outline-success">매칭 시작 => match:start</a>
+<a href="{% url 'match:set_conditions' %}" class="btn btn-outline-warning">취소 => match:set_conditions</a>
+{% endblock %}
