@@ -9,5 +9,7 @@ urlpatterns = [
 
     path('create/', views.create, name='create'),  # 스터디 모집 글 생성
     path('<int:post_id>/delete/', views.delete, name='delete'),  # 스터디 모집 글 삭제
-    path('<int:post_id>/update/', views.update, name='update')  # 스터디 모집 글 수정
+    path('<int:post_id>/update/', views.update, name='update'),  # 스터디 모집 글 수정
+
+    path('search/', views.search, name='search'),  # 스터디 모집글 필터 검색
 ]

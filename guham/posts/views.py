@@ -12,6 +12,21 @@ def index(request):
     }
     return render(request, 'posts/index.html', context)
 
+
+# Search
+def search(request):
+    study_place = request.POST.get('study_place')
+    study_category = request.POST.get('study_category')
+    study_time = request.POST.get('study_time')
+    # raise()
+    # 조건에 맞는 포스트 검색
+    post_searched = Post.objects.filter(study_place=study_place).filter(study_category=study_category).filter(study_place=study_place)
+    context = {
+        'posts': post_searched,
+    }
+    return render(request, 'posts/index.html', context)
+
+
 # READ ONE
 def detail(request, post_id):
     post_selected = Post.objects.get(id=post_id)
@@ -19,6 +34,7 @@ def detail(request, post_id):
         'post_selected': post_selected,
     }
     return render(request, 'posts/detail.html', context)
+
 
 @login_required
 # CREATE
@@ -63,5 +79,3 @@ def update(request, post_id):
         'form': form
     }
     return render(request, 'posts/form.html', context)
-
-
