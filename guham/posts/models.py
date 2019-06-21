@@ -35,5 +35,6 @@ class Post(models.Model):
     study_day = models.CharField(max_length=10, choices=STUDY_DAY)
     study_time = models.CharField(max_length=10, choices=STUDY_TIME)
     content = models.TextField()
-    summary = models.TextField()
+    hashtags = models.TextField()
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
