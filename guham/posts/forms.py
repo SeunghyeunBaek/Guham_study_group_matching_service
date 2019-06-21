@@ -12,8 +12,8 @@ class PostForm(ModelForm):
             'study_place',
             'study_day',
             'study_time',
-            'summary',
             'content',
+            'hashtags',
         ]
 
 

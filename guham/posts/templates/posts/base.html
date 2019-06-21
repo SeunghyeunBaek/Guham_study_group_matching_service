@@ -8,32 +8,43 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>{% block style%}{% endblock %}
     </style>
+    <script src="https://kit.fontawesome.com/ee70558903.js"></script>
 </head>
 
 <body>
-<div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{% url 'posts:index' %}">GUHAM</a>
+<div class="container bg-white">
+
+    <nav class="navbar navbar-expand-lg navbar-light"style="background-color:rgb(250,188,61)">
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    {% if user.is_authenticated %}
+                    <a class="nav-item nav-link btn btn-link" href="{% url 'accounts:user_page' user.id %}">
+                        <b>{{user}}</b>님</a>
+                    <a class="nav-item nav-link" href="{% url 'accounts:logout' %}">logout</a>
+                    {% else %}
+                    <a class="nav-item nav-link" href="{% url 'accounts:login' %}">login</a>
+                    <a class="nav-item nav-link" href="{% url 'accounts:signup' %}">signup</a>
+                    {% endif %}
+                 </div>
+            </div>
+    </nav>
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="{% url 'posts:index' %}">
+            <img src="{% static 'icon2.png'%}" alt="">
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="collapse navbar-collapse d-flex align-self-end" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="{% url 'posts:index' %}">posts:index<span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="{% url 'posts:create' %}">posts:create</a>
-                <a class="nav-item nav-link" href="{% url 'match:set_conditions' %}">match:set_conditions</a>
-                {% if user.is_authenticated %}
-                <a class="nav-item nav-link" href="{% url 'accounts:user_page' user.id %}">current user =
-                    <b>{{user}}</b></a>
-                <a class="nav-item nav-link" href="{% url 'accounts:logout' %}">accounts:logout</a>
-                {% else %}
-                <a class="nav-item nav-link" href="{% url 'accounts:login' %}">accounts:login</a>
-                <a class="nav-item nav-link" href="{% url 'accounts:signup' %}">accounts:signup</a>
-                {% endif %}
+                <h3><a class="nav-item nav-link" href="{% url 'posts:create' %}">모집하기</a></h3>
+                <h3><a class="nav-item nav-link" href="{% url 'match:set_conditions' %}">매칭하기</a></h3>
             </div>
         </div>
     </nav>
+
 </div>
 
 {% if request.resolver_match.url_name == 'index' %}
@@ -41,55 +52,45 @@
     <img src="{% static 'logo2.png' %}" alt="">
 </div>
 
-<div class="container">
+<div class="container d-flex justify-content-center" style="background-color:rgb(250,188,61)">
     <form action="{% url 'posts:search' %}" method="POST">
         {% csrf_token %}
         <div class="d-flex flex-row bd-highlight mb-2.5 ">
             <!-- 셀렉트 박스 시작-->
-            <div class="d-flex flex-wrap justify-content-center p-2 bd-highlight">
-                <button type="button" class="btn btn-primary w-100 p-2">
-                    카테고리
-                </button>
+            <span class="d-flex flex-wrap justify-content-center align-items-center p-2 bd-highlight">
                 <select class="custom-select" name="study_category">
                     <option selected>카테고리</option>
                     <option value="python">python</option>
                     <option value="r">R</option>
                     <option value="java">java</option>
                 </select>
-            </div>
-            <div class="d-flex flex-wrap justify-content-center p-2 bd-highlight">
-                <button type="button" class="btn btn-primary w-100 p-2">
-                    장소
-                </button>
+            </span>
+            <span class="d-flex flex-wrap justify-content-center align-items-center p-2 bd-highlight">
                 <select class="custom-select" name="study_place">
                     <option selected>장소</option>
                     <option value="강남">강남역</option>
                     <option value="역삼">역삼역</option>
                     <option value="교대">교대역</option>
                 </select>
-            </div>
-            <div class="d-flex flex-wrap justify-content-center p-2 bd-highlight">
-                <button type="button" class="btn btn-primary w-100 p-2">
-                    지역
-                </button>
+            </span>
+            <span class="d-flex flex-wrap justify-content-center align-items-center p-2 bd-highlight">
                 <select class="custom-select" name="study_time">
                     <option selected>시간</option>
                     <option value="주1회">주1회</option>
                     <option value="주2회">주2회</option>
                     <option value="주3회">주3회</option>
                 </select>
-            </div>
+            </span>
             <!--셀렉트 박스 끝-->
             <!--검색 버튼 시작-->
-            <div class="p-2 bd-highlight">
-                <button type="submit"><img src="{% static 'logo.png' width=10 %}" alt=""></button>
+            <div class="d-flex align-items-end">
+                <button type="submit" class="btn btn-white"><img src="{% static 'logo_small2.png'%}" alt=""></button>
             </div>
             <!--검색 버튼 끝-->
         </div>
     </form>
 </div>
 {% endif %}
-
 <div class="container">
     {% block body %}
     {% endblock %}

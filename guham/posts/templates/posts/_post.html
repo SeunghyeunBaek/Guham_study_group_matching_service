@@ -1,8 +1,9 @@
 {% load bootstrap4 %}
+
 <div class="card">
-    <div class="card-body">
-        <img src="https://picsum.photos/id/{{ post.id }}/250/50" class="card-img-top">
-        <p class="card-text"><strong>{{ post.title }}</strong>
+    <div id="study_card" class="card-body">
+        <p class="card-text">
+            <strong>{{ post.title }}</strong>
             <br>category : {{ post.study_category }}
             <br>people : {{ post.number_people }}
             <br>place : {{ post.study_place }}
@@ -10,6 +11,12 @@
             <br>{{ post.content }}
             <br>hashtag : {{ post.summary }}
         </p>
-        <a href="{% url 'posts:detail' post.id %}" class="btn btn-outline-primary">posts:detail</a>
+        <div class="d-flex justify-content-center">
+            <a href="{% url 'posts:detail' post.id %}" class="btn btn-primary text-center w-100">스터디 더 알아보기</a>
+        </div>
+    </div>
+    <div class="card-footer">
+        <small class="text-muted"><strong>{{ post.user }}</strong>
+          <br>{{ post.created_at }}</small>
     </div>
 </div>
