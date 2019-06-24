@@ -2,10 +2,19 @@ from django.shortcuts import render, redirect
 from .forms import MatchPostForm
 from .models import MatchPost, HashTag
 from django.contrib.auth.decorators import login_required
+
+from konlpy.tag import Okt  # 명사 추출
+from sklearn.feature_extraction.text import TfidfVectorizer  # 벡터화
+from sklearn.metrics.pairwise import cosine_similarity  # 코사인 유사도
+import pandas as pd
+
 from fuzzywuzzy import fuzz
 from django.db.models import F
 from django.contrib.postgres.search import TrigramSimilarity
+
 # get matching score
+
+okt = Okt()
 
 
 @login_required
@@ -15,9 +24,15 @@ def set_conditions(request):
         if form.is_valid():
             post_new = form.save(commit=False)
             post_new.user = request.user
+
+            content = form.cleaned_data.get('content')
+            content_token = ','.join(okt.nouns(content))
+            print(content_token)
+            # 본문 토큰화
+            post_new.content_token = content_token
             post_new.save()
             # 해시태그 추가
-            content = form.cleaned_data.get('content')
+
             words = content.split()
             for word in words:
                 if word[0] == '#':
@@ -51,31 +66,32 @@ def matched_users(request, match_post_id):
     match_posts = MatchPost.objects.all()  # 모든 post
     my_post = MatchPost.objects.get(id=match_post_id)
     my_hash_tag = MatchPost.objects.get(id=match_post_id).hash_tag_list  # 내 hash_tag
-    match_posts_sorted = sorted(match_posts, key=lambda match_post: match_post.score_hash_tag(my_hash_tag), reverse=True)
+    my_content_token = MatchPost.objects.get(id=match_post_id).content_token  # 내 content_token
+
+    # get doc similarity
+    corpus = []
+    ids = []
+    for match_post in match_posts:
+        corpus.append(match_post.content_token)
+        ids.append(match_post.id)
+    post2corpus = dict(zip(ids, range(len(corpus))))
+    tfidf_obj = TfidfVectorizer()
+    tfidf_mat = tfidf_obj.fit_transform(corpus)
+    sim_mat = cosine_similarity(tfidf_mat)
+    # 더러운 코딩 가즈아
+    match_posts_sorted = sorted(match_posts,
+                                key=lambda post: (.8 * post.score_hash_tag(my_hash_tag) + .2 * sim_mat[
+                                    post2corpus.get(match_post_id), post2corpus.get(post.id)]) / (
+                                                             post.score_hash_tag(my_hash_tag) + sim_mat[
+                                                         post2corpus.get(match_post_id), post2corpus.get(post.id)]),
+                                reverse=True)
     context = {
         'my_post': my_post,
         'posts': match_posts_sorted
     }
-    # 나의 해시태그를 문자열로 변경
-    # my_hash_tag_list = []
-    # for tag in my_hash_tag:
-    #     my_hash_tag_list.append(tag.content)
-    # my_hash_tag = ' '.join(my_hash_tag_list)
-
-    # match_posts = MatchPost.objects.annotate(
-    #     match_persent = fuzz.ratio("#apple", my_hash_tag)
-    # ).order_by('match_persent')
-    # print(match_posts)
-    # tmp = MatchPost.objects.annotate(
-    #     # match_persent = TrigramSimilarity('hash_tag_list', my_hash_tag)
-    #     score=F('id')+1
-    # )
-    # print(tmp.score)
-    #
-    # context = {
-    #     'my_post': my_post,
-    # }
     return render(request, 'match/matched_users.html', context)
+
+# get dummies
 
 
 # def detail(request, match_id):
@@ -105,6 +121,3 @@ def matched_users(request, match_post_id):
 #
 #     # 승낙 시 그룹 채팅방으로 이동
 #     pass
-
-
-
