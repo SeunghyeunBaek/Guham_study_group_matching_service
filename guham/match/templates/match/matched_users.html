@@ -5,21 +5,23 @@
 {% block body %}
 <h1>match:detail</h1>
 <div>
-    <h3>매칭 조건</h3>
     <div class="container">
+        <p>{{ my_post.hash_tag_list }}</p>
         <div class="row">
+            {% for post in posts %}
             {% load bootstrap4 %}
             <div class="card">
                 <div class="card-body">
-                    <img src="https://picsum.photos/id/{{ post_new.id }}/250/50" class="card-img-top">
+                    <img src="https://picsum.photos/id/{{ post.id }}/250/50" class="card-img-top">
                     <p class="card-text">
-                        <br>user: {{ post_new.user }}
-                        <br>category : {{ post_new.category }}
-                        <br>place : {{ post_new.place }}
-                        <br>content : {{ post_new.content }}
+                        <br>user: {{ post.user }}
+                        <br>category : {{ post.category }}
+                        <br>place : {{ post.place }}
+                        <br>content : {{ post.content }}
                     </p>
                 </div>
             </div>
+            {% endfor %}
         </div>
     </div>
 </div>
