@@ -16,6 +16,7 @@ from django.contrib.postgres.search import TrigramSimilarity
 
 okt = Okt()
 
+
 @login_required
 def set_conditions(request):
     if request.method == 'POST':
@@ -62,9 +63,14 @@ def set_conditions(request):
 
 
 def matched_users(request, match_post_id):
-    match_posts = MatchPost.objects.all()  # 모든 post
     my_post = MatchPost.objects.get(id=match_post_id)
-    my_hash_tag = MatchPost.objects.get(id=match_post_id).hash_tag_list  # 내 hash_tag
+    category_selected = my_post.category
+    place_selected = my_post.place
+
+    match_posts = MatchPost.objects.filter(category=category_selected, place=place_selected)
+
+    my_post = MatchPost.objects.get(id=match_post_id)
+    my_hash_tag = my_post.hash_tag_list  # 내 hash_tag
     my_content_token = MatchPost.objects.get(id=match_post_id).content_token  # 내 content_token
 
     # get doc similarity

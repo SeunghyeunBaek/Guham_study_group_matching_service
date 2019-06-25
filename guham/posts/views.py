@@ -22,10 +22,17 @@ def index(request):
 def search(request):
     study_place = request.POST.get('study_place')
     study_category = request.POST.get('study_category')
+<<<<<<< HEAD
     study_day = request.POST.get('study_time')
     # raise()
     # 조건에 맞는 포스트 검색
     post_searched = Post.objects.filter(study_place=study_place, study_category=study_category, study_day=study_day)
+=======
+    study_time = request.POST.get('study_time')
+    print(study_time)
+    # 조건에 맞는 포스트 검색
+    post_searched = Post.objects.filter(study_place=study_place).filter(study_category=study_category).filter(study_time=study_time)
+>>>>>>> d283fdd967a13a398a9e0e662977e4734a10832e
     context = {
         'posts': post_searched,
     }
