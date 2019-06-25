@@ -1,0 +1,28 @@
+{% extends 'posts/base.html' %}
+
+{% block title %} {% endblock %}
+
+{% block body %}
+<h1>match:detail</h1>
+<div class="container">
+    <p>{{ my_post.hash_tag_list }}</p>
+    <div class="row">
+        {% for post in posts %}
+        {% load bootstrap4 %}
+        <div class="card">
+            <div class="card-body">
+                <img src="https://picsum.photos/id/{{ post.id }}/250/50" class="card-img-top">
+                <p class="card-text">
+                    <br>user: {{ post.user }}
+                    <br>category : {{ post.category }}
+                    <br>place : {{ post.place }}
+                    <br>content : {{ post.content }}
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<a href="#" class="btn btn-outline-success">매칭 시작 => match:start</a>
+<a href="{% url 'match:set_conditions' %}" class="btn btn-outline-warning">취소 => match:set_conditions</a>
+{% endblock %}

@@ -1,7 +1,20 @@
 from django.shortcuts import render, redirect
 from .forms import MatchPostForm
-from .models import MatchPost
+from .models import MatchPost, HashTag
 from django.contrib.auth.decorators import login_required
+
+from konlpy.tag import Okt  # 명사 추출
+from sklearn.feature_extraction.text import TfidfVectorizer  # 벡터화
+from sklearn.metrics.pairwise import cosine_similarity  # 코사인 유사도
+import pandas as pd
+
+from fuzzywuzzy import fuzz
+from django.db.models import F
+from django.contrib.postgres.search import TrigramSimilarity
+
+# get matching score
+
+okt = Okt()
 
 
 @login_required
@@ -9,12 +22,34 @@ def set_conditions(request):
     if request.method == 'POST':
         form = MatchPostForm(request.POST)
         if form.is_valid():
-            form = form.save(commit=False)
-            form.user = request.user
-            form.save()
+            post_new = form.save(commit=False)
+            post_new.user = request.user
+
+            content = form.cleaned_data.get('content')
+            content_token = ','.join(okt.nouns(content))
+            print(content_token)
+            # 본문 토큰화
+            post_new.content_token = content_token
+            post_new.save()
+            # 해시태그 추가
+
+            words = content.split()
+            for word in words:
+                if word[0] == '#':
+                    hash_tag_new = HashTag.objects.get_or_create(content=word)
+                    post_new.hash_tag.add(hash_tag_new[0])
+
+            hash_tags = post_new.hash_tag.order_by('content').all()
+            hash_tag_list = []
+            for tag in hash_tags:
+                hash_tag_list.append(tag.content)
+            hash_tag_list = ''.join(hash_tag_list)
+
+            post_new.hash_tag_list = hash_tag_list
+            post_new.save()
+
             context = {
-                'form': form,
-                'match_id' : form.id,
+                'post_new': post_new,
             }
             return render(request, "match/detail.html", context)
         else:
@@ -25,6 +60,38 @@ def set_conditions(request):
         'form': form
     }
     return render(request, 'match/set_conditions.html', context)
+
+
+def matched_users(request, match_post_id):
+    match_posts = MatchPost.objects.all()  # 모든 post
+    my_post = MatchPost.objects.get(id=match_post_id)
+    my_hash_tag = MatchPost.objects.get(id=match_post_id).hash_tag_list  # 내 hash_tag
+    my_content_token = MatchPost.objects.get(id=match_post_id).content_token  # 내 content_token
+
+    # get doc similarity
+    corpus = []
+    ids = []
+    for match_post in match_posts:
+        corpus.append(match_post.content_token)
+        ids.append(match_post.id)
+    post2corpus = dict(zip(ids, range(len(corpus))))
+    tfidf_obj = TfidfVectorizer()
+    tfidf_mat = tfidf_obj.fit_transform(corpus)
+    sim_mat = cosine_similarity(tfidf_mat)
+    # 더러운 코딩 가즈아
+    match_posts_sorted = sorted(match_posts,
+                                key=lambda post: (.8 * post.score_hash_tag(my_hash_tag) + .2 * sim_mat[
+                                    post2corpus.get(match_post_id), post2corpus.get(post.id)]) / (
+                                                             post.score_hash_tag(my_hash_tag) + sim_mat[
+                                                         post2corpus.get(match_post_id), post2corpus.get(post.id)]),
+                                reverse=True)
+    context = {
+        'my_post': my_post,
+        'posts': match_posts_sorted
+    }
+    return render(request, 'match/matched_users.html', context)
+
+# get dummies
 
 
 # def detail(request, match_id):
@@ -54,6 +121,3 @@ def set_conditions(request):
 #
 #     # 승낙 시 그룹 채팅방으로 이동
 #     pass
-
-
-

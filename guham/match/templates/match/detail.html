@@ -11,12 +11,12 @@
             {% load bootstrap4 %}
             <div class="card">
                 <div class="card-body">
-                    <img src="https://picsum.photos/id/{{ form.id }}/250/50" class="card-img-top">
+                    <img src="https://picsum.photos/id/{{ post_new.id }}/250/50" class="card-img-top">
                     <p class="card-text">
-                        <br>category : {{ form.study_category }}
-                        <br>people : {{ form.number_people }}
-                        <br>place : {{ form.study_place }}
-                        <br>time : {{ form.study_day }} : {{ form.study_time }}
+                        <br>user: {{ post_new.user }}
+                        <br>category : {{ post_new.category }}
+                        <br>place : {{ post_new.place }}
+                        <br>content : {{ post_new.content }}
                     </p>
                 </div>
             </div>
@@ -24,6 +24,5 @@
     </div>
 </div>
 <p>소요 시간 출력</p>
-<a href="#" class="btn btn-outline-success">매칭 시작 => match:start</a>
-<a href="{% url 'match:set_conditions' %}" class="btn btn-outline-warning">취소 => match:set_conditions</a>
+<a href="url 'match:matched_users' post_new.id " class="btn btn-outline-success">매칭 시작 => match:start</a>
 {% endblock %}
