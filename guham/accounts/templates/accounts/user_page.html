@@ -12,6 +12,10 @@
     <div class="col-8">
         <h1>user name: {{user}}</h1>
         <p> 모집 글 수: {{user_selected.post_set.count}}</p>
+        <p> 장바구니에 담은 사람들</p>
+            {% for user in user_selected.pick.all %}
+                <a href="{% url 'accounts:user_page' user.id %}">{{user}}</a>
+            {% endfor %}
     </div>
 </div>
 

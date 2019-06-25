@@ -8,8 +8,6 @@
             <br>people : {{ post.number_people }}
             <br>place : {{ post.study_place }}
             <br>time : {{ post.study_day }} : {{ post.study_time }}
-            <br>{{ post.content }}
-            <br>hashtag : {{ post.summary }}
         </p>
         <div class="d-flex justify-content-center">
             <a href="{% url 'posts:detail' post.id %}" class="btn btn-primary text-center w-100">스터디 더 알아보기</a>

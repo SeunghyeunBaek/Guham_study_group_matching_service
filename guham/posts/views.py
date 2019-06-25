@@ -18,9 +18,9 @@ def search(request):
     study_place = request.POST.get('study_place')
     study_category = request.POST.get('study_category')
     study_time = request.POST.get('study_time')
-    # raise()
+    print(study_time)
     # 조건에 맞는 포스트 검색
-    post_searched = Post.objects.filter(study_place=study_place).filter(study_category=study_category).filter(study_place=study_place)
+    post_searched = Post.objects.filter(study_place=study_place).filter(study_category=study_category).filter(study_time=study_time)
     context = {
         'posts': post_searched,
     }
