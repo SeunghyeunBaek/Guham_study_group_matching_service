@@ -63,8 +63,11 @@
 {% block script %}
 <script>
     const cart_buttons = document.querySelector('#cart')
-    cart_buttons.forEach(function(button)){
 
+    cart_buttons.forEach(function(button)){
+        button.addEventListener('click', e=> {
+            const match_post_id = e.target.dataset.id
+        })
     }
 </script>
 {% endblock %}

@@ -9,6 +9,7 @@ from sklearn.metrics.pairwise import cosine_similarity  # 코사인 유사도
 
 okt = Okt()
 
+
 # READ ALL
 def index(request):
     posts = Post.objects.all()
@@ -22,22 +23,14 @@ def index(request):
 def search(request):
     study_place = request.POST.get('study_place')
     study_category = request.POST.get('study_category')
-<<<<<<< HEAD
-    study_day = request.POST.get('study_time')
+    study_day = request.POST.get('study_day')
     # raise()
     # 조건에 맞는 포스트 검색
     post_searched = Post.objects.filter(study_place=study_place, study_category=study_category, study_day=study_day)
-=======
-    study_time = request.POST.get('study_time')
-    print(study_time)
-    # 조건에 맞는 포스트 검색
-    post_searched = Post.objects.filter(study_place=study_place).filter(study_category=study_category).filter(study_time=study_time)
->>>>>>> d283fdd967a13a398a9e0e662977e4734a10832e
     context = {
         'posts': post_searched,
     }
     return render(request, 'posts/index.html', context)
-
 
 # READ ONE
 def detail(request, post_id):
@@ -92,6 +85,7 @@ def create(request):
         'form': form
     }
     return render(request, 'posts/form.html', context)
+
 
 # DELETE
 def delete(request, post_id):
