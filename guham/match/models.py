@@ -55,4 +55,4 @@ class MatchPost(models.Model):
     # 상대방의 해시태그와 나의 해시태그를 비교
     def score_hash_tag(self, ur_hash_tag_list):
         score = fuzz.ratio(self.hash_tag_list, ur_hash_tag_list)
-        return score
+        return .01*score

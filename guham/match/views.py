@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from konlpy.tag import Okt  # 명사 추출
 from sklearn.feature_extraction.text import TfidfVectorizer  # 벡터화
 from sklearn.metrics.pairwise import cosine_similarity  # 코사인 유사도
-import pandas as pd
+import re
 
 from fuzzywuzzy import fuzz
 from django.db.models import F
@@ -16,7 +16,6 @@ from django.contrib.postgres.search import TrigramSimilarity
 
 okt = Okt()
 
-
 @login_required
 def set_conditions(request):
     if request.method == 'POST':
@@ -25,27 +24,27 @@ def set_conditions(request):
             post_new = form.save(commit=False)
             post_new.user = request.user
 
+            # 본문 토큰화
             content = form.cleaned_data.get('content')
             content_token = ','.join(okt.nouns(content))
-            print(content_token)
-            # 본문 토큰화
             post_new.content_token = content_token
             post_new.save()
-            # 해시태그 추가
 
-            words = content.split()
+            # 해시태그 추가
+            hash_tag_list = form.cleaned_data.get('hash_tag_list')
+            words = hash_tag_list.split()
             for word in words:
                 if word[0] == '#':
                     hash_tag_new = HashTag.objects.get_or_create(content=word)
                     post_new.hash_tag.add(hash_tag_new[0])
 
-            hash_tags = post_new.hash_tag.order_by('content').all()
-            hash_tag_list = []
-            for tag in hash_tags:
-                hash_tag_list.append(tag.content)
-            hash_tag_list = ''.join(hash_tag_list)
-
-            post_new.hash_tag_list = hash_tag_list
+            # 해시태그 리스트 정렬
+            hash_tag_list_new = []
+            for hash in post_new.hash_tag.all():
+                hash_tag_list_new.append(hash.content)
+            hash_tag_list_new.sort()  # 정렬
+            hash_tag_list_str = ' '.join(hash_tag_list_new)
+            post_new.hash_tag_list = hash_tag_list_str
             post_new.save()
 
             context = {
@@ -81,9 +80,7 @@ def matched_users(request, match_post_id):
     # 더러운 코딩 가즈아
     match_posts_sorted = sorted(match_posts,
                                 key=lambda post: (.8 * post.score_hash_tag(my_hash_tag) + .2 * sim_mat[
-                                    post2corpus.get(match_post_id), post2corpus.get(post.id)]) / (
-                                                             post.score_hash_tag(my_hash_tag) + sim_mat[
-                                                         post2corpus.get(match_post_id), post2corpus.get(post.id)]),
+                                    post2corpus.get(match_post_id), post2corpus.get(post.id)]),
                                 reverse=True)
     context = {
         'my_post': my_post,

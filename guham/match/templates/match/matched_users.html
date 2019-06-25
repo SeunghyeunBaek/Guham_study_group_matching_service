@@ -5,7 +5,20 @@
 {% block body %}
 <h1>match:detail</h1>
 <div class="container">
-    <p>{{ my_post.hash_tag_list }}</p>
+    <div class="card">
+        <div class="card-body">
+            <img src="https://picsum.photos/id/{{ my_post.id }}/250/50" class="card-img-top">
+            <p class="card-text">
+                <h1>my match post</h1>
+                <br>user: {{ my_post.user }}
+                <br>category : {{ my_post.category }}
+                <br>place : {{ my_post.place }}
+                <br>content : {{ my_post.content }}
+                <br>hash tags: {{ my_post.hash_tag_list }}
+            </p>
+        </div>
+    </div>
+    <hr>
     <div class="row">
         {% for post in posts %}
         {% load bootstrap4 %}
@@ -17,6 +30,7 @@
                     <br>category : {{ post.category }}
                     <br>place : {{ post.place }}
                     <br>content : {{ post.content }}
+                    <br>hash tags: {{ post.hash_tag_list }}
                 </p>
             </div>
         </div>

@@ -14,9 +14,10 @@
                     <img src="https://picsum.photos/id/{{ post_new.id }}/250/50" class="card-img-top">
                     <p class="card-text">
                         <br>user: {{ post_new.user }}
-                        <br>category : {{ post_new.category }}
-                        <br>place : {{ post_new.place }}
-                        <br>content : {{ post_new.content }}
+                        <br>category: {{ post_new.category }}
+                        <br>place: {{ post_new.place }}
+                        <br>content: {{ post_new.content }}
+                        <br>hash tags: {{post_new.hash_tag_list}}
                     </p>
                 </div>
             </div>
@@ -24,5 +25,6 @@
     </div>
 </div>
 <p>소요 시간 출력</p>
-<a href="url 'match:matched_users' post_new.id " class="btn btn-outline-success">매칭 시작 => match:start</a>
+<a href="{% url 'match:matched_users' post_new.id %}" class="btn btn-outline-success">매칭 시작 => match:start</a>
+<a href="{% url 'match:set_conditions' %}" class="btn btn-outline-warning">매칭 취소 => match:set_conditions</a>
 {% endblock %}
