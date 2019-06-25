@@ -1,5 +1,3 @@
-# TODO 슬기 190618 models 수정
-
 from django.db import models
 from django.conf import settings
 from fuzzywuzzy import fuzz

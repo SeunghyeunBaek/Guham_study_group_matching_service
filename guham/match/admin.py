@@ -5,7 +5,6 @@ from import_export import resources
 
 
 class MatchPostResource(resources.ModelResource):
-
     class Meta:
         model = MatchPost
 
@@ -15,7 +14,6 @@ class MatchPostAdmin(ImportExportModelAdmin):
 
 
 class HashTagResource(resources.ModelResource):
-
     class Meta:
         model = HashTag
 

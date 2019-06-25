@@ -4,6 +4,7 @@ from django.conf import settings
 STUDY_CATEGORY = [
     ('python', 'Python'),
     ('r', 'R'),
+    ('c', 'C'),
     ('java', 'Java'),
 ]
 
@@ -26,8 +27,16 @@ STUDY_TIME = [
     ('3hour', '3hour'),
 ]
 
+class HashTag(models.Model):
+    content = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):
+        return self.content
+
+
 
 class Post(models.Model):
+    hash_tag = models.ManyToManyField(HashTag, blank=True, related_name='match_room_tagged')
     title = models.CharField(max_length=50)
     study_category = models.CharField(max_length=10, choices=STUDY_CATEGORY)
     number_people = models.IntegerField()
@@ -35,6 +44,6 @@ class Post(models.Model):
     study_day = models.CharField(max_length=10, choices=STUDY_DAY)
     study_time = models.CharField(max_length=10, choices=STUDY_TIME)
     content = models.TextField()
-    hashtags = models.TextField()
+    hash_tag_list = models.TextField(blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
