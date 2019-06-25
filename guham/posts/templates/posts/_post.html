@@ -4,47 +4,44 @@
     <div id="study_card_header" class="card-header">
         <h5 class="d-flex justify-content-center"><strong>{{ post.title }}</strong></h5>
     </div>
+
     <div id="study_card" class="card-body">
         <p class="card-text">
-<<<<<<< HEAD
             {{ post.hash_tag_list }}
-            <hr>
-            <div class="row d-flex align-items-center">
-                <div class="col-6 d-flex justify-content-center flex-wrap">
-                    {% if post.study_category == 'python' %}
-                        <image src="{% static 'python3.png'%}">
-                        <h5><strong>python</strong></image></h5>
-                    {% elif post.study_category == 'r' %}
-                        <image src="{% static 'r5.png'%}">
-                        <h5><strong>R</strong></image></h5>
-                     {% elif post.study_category == 'java' %}
-                        <image src="{% static 'java1.png'%}">
-                        <h5><strong>java</strong></image></h5>
-                     {% elif post.study_category == 'c' %}
-                        <image src="{% static 'c6.png'%}">
-                        <h5><strong>C</strong></img></h5>
-                    {% endif %}
-                </div>
-                <div class="col-6 d-flex justify-content-center flex-wrap align-items-center">
-                    <image src="{% static 'week1_2.png'%}"></image>
-                    <image src="{% static '1hour.png'%}"></image>
-                    <image src="{% static '1hour.png'%}"></image>
-                </div>
-            </div>
-=======
-            <strong>{{ post.title }}</strong>
-            <br>category : {{ post.study_category }}
-            <br>people : {{ post.number_people }}
-            <br>place : {{ post.study_place }}
-            <br>time : {{ post.study_day }} - {{ post.study_time }}
->>>>>>> af89d78695c96452bcb7ecc14f692ad8821309df
-        </p>
-            <div class="d-flex justify-content-center">
-                <a href="{% url 'posts:detail' post.id %}" class="btn btn-primary text-center w-100">스터디 더 알아보기</a>
-            </div>
+        <hr>
+        < class="row d-flex align-items-center">
+        <div class="col-6 d-flex justify-content-center flex-wrap">
+            {% if post.study_category == 'python' %}
+            <image src="{% static 'python3.png'%}">
+                <h5><strong>python</strong></image>
+            </h5>
+            {% elif post.study_category == 'r' %}
+            <image src="{% static 'r5.png'%}">
+                <h5><strong>R</strong></image>
+            </h5>
+            {% elif post.study_category == 'java' %}
+            <image src="{% static 'java1.png'%}">
+                <h5><strong>java</strong></image>
+            </h5>
+            {% elif post.study_category == 'c' %}
+            <image src="{% static 'c6.png'%}">
+                <h5><strong>C</strong></img></h5>
+                {% endif %}
+        </div>
+        <div class="col-6 d-flex justify-content-center flex-wrap align-items-center">
+            <image src="{% static 'week1_2.png'%}"></image>
+            <image src="{% static '1hour.png'%}"></image>
+            <image src="{% static '1hour.png'%}"></image>
+        </div>
     </div>
-    <div class="card-footer">
-        <small class="text-muted"><strong>{{ post.user }}</strong>
-          <br>{{ post.created_at }}</small>
+    </p>
+    <div class="d-flex justify-content-center">
+        <a href="{% url 'posts:detail' post.id %}" class="btn btn-primary text-center w-100">스터디 더 알아보기</a>
     </div>
+</div>
+<div class="card-footer">
+    <small class="text-muted"><strong>{{ post.user }}</strong>
+        <br>{{ post.created_at }}
+    </small>
+</div>
 </div>
