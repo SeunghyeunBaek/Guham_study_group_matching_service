@@ -3,10 +3,10 @@
 {% block title %} {% endblock %}
 
 {% block body %}
-<h1>title: {{post_selected.title}}</h1>
 <h2>user : {{post_selected.user}}</h2>
 <p>content: {{post_selected.content}}</p>
-<a href="{% url 'match:matched_users' post_selected.user.id %}" class="btn btn-outline-primary">뒤로가기</a>
+<p>hashtags: {{post_selected.hash_tag_list}}</p>
+<a href="{% url 'match:matched_users' user.id %}" class="btn btn-outline-primary">뒤로가기</a>
 {% if post_selected.user in user.pick.all %}
 <a href="{% url 'accounts:pick' post_selected.user.id %}" class="btn btn-outline-danger">장바구에서 빼기</a>
 {% else %}
