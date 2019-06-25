@@ -3,28 +3,13 @@
 {% block title %} {% endblock %}
 
 {% block body %}
-<h1>match:detail</h1>
-<div>
-    <h3>매칭 조건</h3>
-    <div class="container">
-        <div class="row">
-            {% load bootstrap4 %}
-            <div class="card">
-                <div class="card-body">
-                    <img src="https://picsum.photos/id/{{ post_new.id }}/250/50" class="card-img-top">
-                    <p class="card-text">
-                        <br>user: {{ post_new.user }}
-                        <br>category: {{ post_new.category }}
-                        <br>place: {{ post_new.place }}
-                        <br>content: {{ post_new.content }}
-                        <br>hash tags: {{post_new.hash_tag_list}}
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<p>소요 시간 출력</p>
-<a href="{% url 'match:matched_users' post_new.id %}" class="btn btn-outline-success">매칭 시작 => match:start</a>
-<a href="{% url 'match:set_conditions' %}" class="btn btn-outline-warning">매칭 취소 => match:set_conditions</a>
+<h1>title: {{post_selected.title}}</h1>
+<h2>user : {{post_selected.user}}</h2>
+<p>content: {{post_selected.content}}</p>
+<a href="{% url 'match:matched_users' post_selected.user.id %}" class="btn btn-outline-primary">뒤로가기</a>
+{% if post_selected.user in user.pick.all %}
+<a href="{% url 'accounts:pick' post_selected.user.id %}" class="btn btn-outline-danger">장바구에서 빼기</a>
+{% else %}
+<a href="{% url 'accounts:pick' post_selected.user.id %}" class="btn btn-outline-danger">장바구니 담기</a>
+{% endif %}
 {% endblock %}

@@ -94,6 +94,13 @@ def matched_users(request, match_post_id):
     }
     return render(request, 'match/matched_users.html', context)
 
+
+def detail(request, match_post_id):
+    post_selected = MatchPost.objects.get(id=match_post_id)
+    context = {
+        'post_selected': post_selected,
+    }
+    return render(request, 'match/detail.html', context)
 # get dummies
 
 

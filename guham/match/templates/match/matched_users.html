@@ -32,22 +32,16 @@
                     <br>content : {{ post.content }}
                     <br>hash tags: {{ post.hash_tag_list }}
                     <br>
-                    {% if post.user in user.pick.all %}
-                    <a href="{% url 'accounts:pick' post.user.id %}">
-                        <button class="btn btn-outline-primary" id="cart">장바구니에서 제거</button>
-                    </a>
-                    {% else %}
-                    <a href="{% url 'accounts:pick' post.user.id %}">
-                        <button class="btn btn-outline-primary">장바구니에 담기</button>
-                    </a>
-                    <br>
-                    <!--                    <a href="{# url 'match:detail' post.id #}">-->
-                    <!--                        <button class="btn btn-outline-primary">-->
-                    <!--                            자세히 보기-->
-                    <!--                        </button>-->
-                    <!--                    </a>-->
-                    {% endif %}
-
+                        {% if post.user in user.pick.all %}
+                        <a href="{% url 'accounts:pick' post.user.id %}">
+                            <button class="btn btn-outline-primary" id="cart">장바구니에서 제거</button>
+                        </a>
+                        {% else %}
+                        <a href="{% url 'accounts:pick' post.user.id %}">
+                            <button class="btn btn-outline-primary">장바구니에 담기</button>
+                        </a>
+                        {% endif %}
+                    <a href="{% url 'match:detail' post.id %}"><button class="btn btn-outline-primary">상세보기</button></a>
                 </p>
             </div>
         </div>
@@ -59,17 +53,5 @@
 
 {% endblock %}
 
-<!--장바구니 버튼 자바스크립트-->
-{% block script %}
-<script>
-    const cart_buttons = document.querySelector('#cart')
-
-    cart_buttons.forEach(function(button)){
-        button.addEventListener('click', e=> {
-            const match_post_id = e.target.dataset.id
-        })
-    }
-</script>
-{% endblock %}
 
 
