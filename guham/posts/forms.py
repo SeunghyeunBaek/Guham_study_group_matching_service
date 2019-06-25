@@ -13,7 +13,7 @@ class PostForm(ModelForm):
             'study_day',
             'study_time',
             'content',
-            'hashtags',
+            'hash_tag_list',
         ]
 
 

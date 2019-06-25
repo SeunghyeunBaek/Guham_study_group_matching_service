@@ -1,5 +1,3 @@
-# TODO 슬기 190618 models 수정
-
 from django.db import models
 from django.conf import settings
 from fuzzywuzzy import fuzz
@@ -55,4 +53,4 @@ class MatchPost(models.Model):
     # 상대방의 해시태그와 나의 해시태그를 비교
     def score_hash_tag(self, ur_hash_tag_list):
         score = fuzz.ratio(self.hash_tag_list, ur_hash_tag_list)
-        return score
+        return .01*score
