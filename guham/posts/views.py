@@ -12,7 +12,7 @@ okt = Okt()
 
 # READ ALL
 def index(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('-id')
     context = {
         'posts': posts
     }
@@ -110,3 +110,6 @@ def update(request, post_id):
         'form': form
     }
     return render(request, 'posts/form.html', context)
+
+def test(request):
+    return render(request, 'posts/test.html')

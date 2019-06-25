@@ -12,4 +12,6 @@ urlpatterns = [
     path('<int:post_id>/update/', views.update, name='update'),  # 스터디 모집 글 수정
 
     path('search/', views.search, name='search'),  # 스터디 모집글 필터 검색
+
+    path('test/', views.test, name='test'),
 ]

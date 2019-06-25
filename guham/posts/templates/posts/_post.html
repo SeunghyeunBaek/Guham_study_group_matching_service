@@ -1,18 +1,19 @@
 {% load bootstrap4 %}
+{% load staticfiles  %}
 
 <div class="card">
     <div id="study_card" class="card-body">
         <p class="card-text">
-            <strong>{{ post.title }}</strong>
+            <h5 class="d-flex justify-content-center"><strong>{{ post.title }}</strong></h5>
+            {{ post.hash_tag_list}}
+            <hr>
+            {% if post.study_category == 'python' %}
+                <image src="{% static 'banner4.png'%}"></image>
+            {% endif %}
             <br>category : {{ post.study_category }}
             <br>people : {{ post.number_people }}
             <br>place : {{ post.study_place }}
             <br>time : {{ post.study_day }} : {{ post.study_time }}
-<<<<<<< HEAD
-            <br>{{ post.content }}
-            <br>hashtag : {{ post.hash_tag_list }}
-=======
->>>>>>> d283fdd967a13a398a9e0e662977e4734a10832e
         </p>
         <div class="d-flex justify-content-center">
             <a href="{% url 'posts:detail' post.id %}" class="btn btn-primary text-center w-100">스터디 더 알아보기</a>
