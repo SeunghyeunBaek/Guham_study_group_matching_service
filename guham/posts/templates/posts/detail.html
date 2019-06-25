@@ -1,13 +1,57 @@
 {% extends 'posts/base.html' %}
+{% load bootstrap4 %}
+{% load staticfiles  %}
 
 {% block title %} posts:detail {% endblock %}
 
 {% block body %}
-<h1>title: {{post_selected.title}}</h1>
-<h2>user : {{post_selected.user}}</h2>
-<p>summary: {{post_selected.summary}}</p>
-<p>contents: {{post_selected.content}}</p>
-<a href="{% url 'posts:index' %}" class="btn btn-outline-primary">posts:index</a>
-<a href="{% url 'posts:delete' post_selected.id %}" class="btn btn-outline-danger">posts:delete</a>
-<a href="{% url 'posts:update' post_selected.id %}" class="btn btn-outline-warning">posts:update</a>
+
+<div class="card mt-4">
+    <div id="study_card_header" class="card-header">
+        <h2 class="d-flex justify-content-center"><strong>{{post_selected.title}}</strong></h2>
+    </div>
+    <div id="study_card" class="card-body">
+        <p class="card-text">
+            <div class="d-flex justify-content-end">
+                <p><strong>{{ post_selected.user }}</strong></p>
+                <p>{{ post_selected.created_at }}</small></p>
+            </div>
+            <div>
+                <br>{{ post_selected.hash_tag_list }}
+            </div>
+            <div class="row d-flex align-items-center">
+                <div class="col-6 d-flex justify-content-center flex-wrap">
+                    {% if post_selected.study_category == 'python' %}
+                        <image src="{% static 'python3.png'%}">
+                        <h5><strong>python</strong></image></h5>
+                    {% elif post_selected.study_category == 'r' %}
+                        <image src="{% static 'r5.png'%}">
+                        <h5><strong>R</strong></image></h5>
+                     {% elif post_selected.study_category == 'java' %}
+                        <image src="{% static 'java1.png'%}">
+                        <h5><strong>java</strong></image></h5>
+                     {% elif post_selected.study_category == 'c' %}
+                        <image src="{% static 'c6.png'%}">
+                        <h5><strong>C</strong></img></h5>
+                    {% endif %}
+                </div>
+                <div class="col-6 d-flex justify-content-center flex-wrap align-items-center">
+                    <image src="{% static 'week1_2.png'%}"></image>
+                    <image src="{% static '1hour.png'%}"></image>
+                    <image src="{% static '1hour.png'%}"></image>
+                </div>
+                <div>
+                    {{ post_selected.content }}
+                </div>
+            </div>
+        </p>
+    </div>
+
+    <div class="d-flex flex-nowrap justify-content-end">
+        <a href="{% url 'posts:index' %}"><image src="{% static 'home_button.png' %}"></image></a>
+        <a href="{% url 'posts:update' post_selected.id %}" class="btn btn-warning">수정</a>
+        <a href="{% url 'posts:delete' post_selected.id %}" class="btn btn-danger">삭제</a>
+    </div>
+</div>
+
 {% endblock %}
