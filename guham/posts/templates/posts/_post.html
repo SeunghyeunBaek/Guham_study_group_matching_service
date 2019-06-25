@@ -1,5 +1,4 @@
 {% load bootstrap4 %}
-{% load staticfiles  %}
 
 <div class="card">
     <div id="study_card_header" class="card-header">
@@ -7,6 +6,7 @@
     </div>
     <div id="study_card" class="card-body">
         <p class="card-text">
+<<<<<<< HEAD
             {{ post.hash_tag_list }}
             <hr>
             <div class="row d-flex align-items-center">
@@ -31,6 +31,13 @@
                     <image src="{% static '1hour.png'%}"></image>
                 </div>
             </div>
+=======
+            <strong>{{ post.title }}</strong>
+            <br>category : {{ post.study_category }}
+            <br>people : {{ post.number_people }}
+            <br>place : {{ post.study_place }}
+            <br>time : {{ post.study_day }} - {{ post.study_time }}
+>>>>>>> af89d78695c96452bcb7ecc14f692ad8821309df
         </p>
             <div class="d-flex justify-content-center">
                 <a href="{% url 'posts:detail' post.id %}" class="btn btn-primary text-center w-100">스터디 더 알아보기</a>

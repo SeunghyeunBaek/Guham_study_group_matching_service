@@ -27,12 +27,12 @@ STUDY_TIME = [
     ('3hour', '3hour'),
 ]
 
+
 class HashTag(models.Model):
     content = models.CharField(max_length=50, unique=True)
 
     def __str__(self):
         return self.content
-
 
 
 class Post(models.Model):

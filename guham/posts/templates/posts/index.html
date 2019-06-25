@@ -2,15 +2,14 @@
 
 {% block title %} posts:index {% endblock %}
 {% block body %}
-    {% if posts %}
-
+{% if posts %}
 <div class="card-columns">
-        {% for post in posts %}
-                {% include 'posts/_post.html' %}
-        {% endfor %}
+    {% for post in posts %}
+        {% include 'posts/_post.html' %}
+    {% endfor %}
     {% else %}
     <p>검색결과가 없습니다</p>
-<a href="{% url 'posts:index' %}" class="btn btn-outline-primary">posts:index</a>
+    <a href="{% url 'posts:index' %}" class="btn btn-outline-primary">posts:index</a>
     {% endif %}
 </div>
 {% endblock %}

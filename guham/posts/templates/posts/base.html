@@ -6,30 +6,27 @@
     <title>{% block title %} {% endblock %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style>{% block style%}{% endblock %}
-    </style>
     <script src="https://kit.fontawesome.com/ee70558903.js"></script>
 </head>
 
 <body>
 <div class="container bg-white my-5">
-
     <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    {% if user.is_authenticated %}
-                    <a class="nav-item nav-link btn btn-link" href="{% url 'accounts:user_page' user.id %}">
-                        <b>{{user}}</b>님</a>
-                    <a class="nav-item nav-link" href="{% url 'accounts:logout' %}">logout</a>
-                    {% else %}
-                    <a class="nav-item nav-link" href="{% url 'accounts:login' %}">login</a>
-                    <a class="nav-item nav-link" href="{% url 'accounts:signup' %}">signup</a>
-                    {% endif %}
-                 </div>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                {% if user.is_authenticated %}
+                <a class="nav-item nav-link btn btn-link" href="{% url 'accounts:user_page' user.id %}">
+                    <b>{{user}}</b>님</a>
+                <a class="nav-item nav-link" href="{% url 'accounts:logout' %}">logout</a>
+                {% else %}
+                <a class="nav-item nav-link" href="{% url 'accounts:login' %}">login</a>
+                <a class="nav-item nav-link" href="{% url 'accounts:signup' %}">signup</a>
+                {% endif %}
             </div>
-    </nav>
+        </div>
 </div>
-
+</nav>
+</div>
 {% if request.resolver_match.url_name == 'index' %}
 <div class="container d-flex justify-content-center">
     <a class="navbar-brand" href="{% url 'posts:index' %}">
@@ -41,9 +38,15 @@
     </button>
     <form action="{% url 'posts:search' %}" method="POST">
           {% csrf_token %}
+<<<<<<< HEAD
         <div class="d-flex flex-row bd-highlight mb-2.5 ">
             <!-- 셀렉트 박스 시작-->
             <span class="d-flex flex-wrap justify-content-center align-items-center p-2 bd-highlight">
+=======
+    <div class="d-flex flex-row bd-highlight mb-2.5 ">
+        <!-- 셀렉트 박스 시작-->
+        <span class="d-flex flex-wrap justify-content-center align-items-center p-2 bd-highlight">
+>>>>>>> af89d78695c96452bcb7ecc14f692ad8821309df
                 <select class="custom-select" name="study_category">
                     <option selected>카테고리</option>
                     <option value="python">python</option>
@@ -52,7 +55,7 @@
                     <option value="c">C</option>
                 </select>
             </span>
-            <span class="d-flex flex-wrap justify-content-center align-items-center p-2 bd-highlight">
+        <span class="d-flex flex-wrap justify-content-center align-items-center p-2 bd-highlight">
                 <select class="custom-select" name="study_place">
                     <option selected>장소</option>
                     <option value="강남역">강남역</option>
@@ -60,7 +63,7 @@
                     <option value="교대역">교대역</option>
                 </select>
             </span>
-            <span class="d-flex flex-wrap justify-content-center align-items-center p-2 bd-highlight">
+        <span class="d-flex flex-wrap justify-content-center align-items-center p-2 bd-highlight">
                 <select class="custom-select" name="study_day">
                     <option selected>시간</option>
                     <option value="주1회">주1회</option>
@@ -68,16 +71,16 @@
                     <option value="주3회">주3회</option>
                 </select>
             </span>
-            <!--셀렉트 박스 끝-->
-            <!--검색 버튼 시작-->
-            <span class="d-flex flex-wrap justify-content-center align-items-center p-2 bd-highlight">
-                <input type="text" class="form-control", id="content">
+        <!--셀렉트 박스 끝-->
+        <!--검색 버튼 시작-->
+        <span class="d-flex flex-wrap justify-content-center align-items-center p-2 bd-highlight">
+                <input type="text" class="form-control" id="content" name="query">
             </span>
-            <div class="d-flex align-items-end">
-                <button type="submit" class="btn btn-white"><img src="{% static 'logo_small2.png'%}" alt=""></button>
-            </div>
-            <!--검색 버튼 끝-->
+        <div class="d-flex align-items-end">
+            <button type="submit" class="btn btn-white"><img src="{% static 'logo_small2.png'%}" alt=""></button>
         </div>
+        <!--검색 버튼 끝-->
+    </div>
     </form>
 </div>
 {% endif %}
@@ -92,12 +95,14 @@
             </div>
         </div>
     </nav>
+    `
 
 </div>
 
 
 <div class="container">
     {% block body %}
+
     {% endblock %}
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -108,9 +113,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
-
 </div>
-{% block script %}
-{% endblock %}
 </body>
 </html>
+
+<script>
+
+</script>

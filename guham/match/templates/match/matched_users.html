@@ -1,20 +1,24 @@
 {% extends 'posts/base.html' %}
+{% load match_templatetag %}
 
 {% block title %} {% endblock %}
 
 {% block body %}
-<h1>match:detail</h1>
+<h1>match:matched_users</h1>
 <div class="container">
     <div class="card">
         <div class="card-body">
-            <img src="https://picsum.photos/id/{{ my_post.id }}/250/50" class="card-img-top">
+            <img src="https://picsum.photos/id/{{ my_post.id }}/250/100" class="card-img-top">
             <p class="card-text">
             <h1>my match post</h1>
             <br>user: <a href="{% url 'accounts:user_page' my_post.user.id %}">{{ my_post.user }}</a>
             <br>category : {{ my_post.category }}
             <br>place : {{ my_post.place }}
-            <br>content : {{ my_post.content }}
-            <br>hash tags: {{ my_post.hash_tag_list }}
+            <p>
+                {% for hash_tag in post.hash_tag.all %}
+                <a href="{% url 'match:hash_tagged_posts' my_post.id hash_tag.id %}">{{hash_tag.content}}</a>,
+                {% endfor %}
+            </p>
             </p>
         </div>
     </div>
@@ -24,52 +28,38 @@
         {% load bootstrap4 %}
         <div class="card">
             <div class="card-body">
-                <img src="https://picsum.photos/id/{{ post.id }}/250/50" class="card-img-top">
+                <img src="https://picsum.photos/id/{{ post.id }}/250/100" class="card-img-top">
                 <p class="card-text">
                     <br>user: <a href="{% url 'accounts:user_page' post.user.id %}">{{ post.user }}</a>
                     <br>category : {{ post.category }}
                     <br>place : {{ post.place }}
-                    <br>content : {{ post.content }}
-                    <br>hash tags: {{ post.hash_tag_list }}
-                    <br>
-                    {% if post.user in user.pick.all %}
-                    <a href="{% url 'accounts:pick' post.user.id %}">
-                        <button class="btn btn-outline-primary" id="cart">장바구니에서 제거</button>
-                    </a>
-                    {% else %}
-                    <a href="{% url 'accounts:pick' post.user.id %}">
-                        <button class="btn btn-outline-primary">장바구니에 담기</button>
-                    </a>
-                    <br>
-                    <!--                    <a href="{# url 'match:detail' post.id #}">-->
-                    <!--                        <button class="btn btn-outline-primary">-->
-                    <!--                            자세히 보기-->
-                    <!--                        </button>-->
-                    <!--                    </a>-->
-                    {% endif %}
-
+                <p>
+                    {% for hash_tag in post.hash_tag.all %}
+                    <a href="{% url 'match:hash_tagged_posts' my_post.id hash_tag.id %}">{{hash_tag.content}}</a>,
+                    {% endfor %}
+                </p>
+                <br>
+                {% if post.user in user.pick.all %}
+                <a href="{% url 'accounts:pick' post.user.id %}">
+                    <button class="btn btn-outline-primary" id="cart">장바구니에서 제거</button>
+                </a>
+                {% else %}
+                <a href="{% url 'accounts:pick' post.user.id %}">
+                    <button class="btn btn-outline-primary">장바구니에 담기</button>
+                </a>
+                {% endif %}
+                <a href="{% url 'match:detail' post.id %}">
+                    <button class="btn btn-outline-primary">상세보기</button>
+                </a>
                 </p>
             </div>
         </div>
         {% endfor %}
     </div>
 </div>
-<a href="#" class="btn btn-outline-success">매칭 시작 => match:start</a>
 <a href="{% url 'match:set_conditions' %}" class="btn btn-outline-warning">취소 => match:set_conditions</a>
 
 {% endblock %}
 
-<!--장바구니 버튼 자바스크립트-->
-{% block script %}
-<script>
-    const cart_buttons = document.querySelector('#cart')
-
-    cart_buttons.forEach(function(button)){
-        button.addEventListener('click', e=> {
-            const match_post_id = e.target.dataset.id
-        })
-    }
-</script>
-{% endblock %}
 
 

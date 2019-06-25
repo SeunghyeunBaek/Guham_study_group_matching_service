@@ -51,7 +51,7 @@ def set_conditions(request):
             context = {
                 'post_new': post_new,
             }
-            return render(request, "match/detail.html", context)
+            return redirect("match:matched_users", post_new.id)
         else:
             pass
     else:
@@ -94,6 +94,24 @@ def matched_users(request, match_post_id):
     }
     return render(request, 'match/matched_users.html', context)
 
+
+def detail(request, match_post_id):
+    post_selected = MatchPost.objects.get(id=match_post_id)
+    context = {
+        'post_selected': post_selected,
+    }
+    return render(request, 'match/detail.html', context)
+
+
+def hash_tagged_posts(request, match_post_id, hash_tag_id):
+    my_post = MatchPost.objects.get(id=match_post_id)
+    hash_tag_selected = HashTag.objects.get(id=hash_tag_id)
+    match_posts_tagged = hash_tag_selected.match_post_tagged.all()
+    context = {
+        'my_post': my_post,
+        'posts': match_posts_tagged,
+    }
+    return render(request, 'match/matched_users.html', context)
 # get dummies
 
 
