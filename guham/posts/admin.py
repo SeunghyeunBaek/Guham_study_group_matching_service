@@ -3,6 +3,7 @@ from .models import Post, HashTag
 from import_export.admin import ImportExportModelAdmin
 from import_export import resources
 
+
 class PostResource(resources.ModelResource):
 
     class Meta:
@@ -11,6 +12,7 @@ class PostResource(resources.ModelResource):
 
 class PostAdmin(ImportExportModelAdmin):
     resource_class = PostResource
+
 
 class HashTagResource(resources.ModelResource):
     class Meta:
