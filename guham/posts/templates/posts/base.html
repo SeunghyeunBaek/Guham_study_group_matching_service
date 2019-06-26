@@ -31,6 +31,7 @@
 </div>
 </nav>
 </div>
+{% if request.resolver_match.url_name == 'index' %}
 <div class="container d-flex justify-content-center">
     <a class="navbar-brand" href="{% url 'posts:index' %}">
         <img src="{% static 'banner4.png'%}" alt="">
@@ -80,6 +81,9 @@
         </div>
     </form>
 </div>
+{% endif %}
+
+
 <div class="container mt-4" style="background-color:rgb(250,188,61)">
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="collapse navbar-collapse d-flex align-self-end" id="navbarNavAltMarkup">
@@ -148,8 +152,6 @@
                                     e.target.classList.add('fa-cart-plus')
                                 }
                             }
-
-
                         }
                     )
             }

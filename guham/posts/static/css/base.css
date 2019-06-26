@@ -1,0 +1,94 @@
+@import "https://fonts.googleapis.com/css?family=Catamaran:400,600,900";
+nav ul {
+  display: flex;
+  flex-flow: row nowrap;
+  list-style: none;
+}
+nav ul li {
+  transition: 1s;
+  flex: 2;
+}
+nav ul li .menu-item {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  height: 85px;
+  text-transform: uppercase;
+  color: #FFF;
+  text-decoration: none;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: .5px;
+}
+nav ul li.brand {
+
+}
+nav ul li.brand .menu-item {
+  justify-content: flex-start;
+}
+nav ul li.brand .brand-label {
+  position: absolute;
+  left: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1em;
+  transition: .3s .3s;
+}
+nav ul li.brand svg {
+  max-height: 3em;
+  min-height: 3em;
+  min-width: 2em;
+  max-width: 2em;
+}
+nav ul li.recruit {
+  background: #F17249;
+}
+nav ul li.match {
+  background: #FCA929;
+}
+nav ul li.recipes {
+  background: #FDCC2F;
+}
+nav ul li.search {
+  flex: 0;
+  background: #FEF3D0;
+  text-transform: none;
+}
+nav ul li.search .menu-item {
+  justify-content: flex-end;
+}
+nav ul li.search .menu-item svg {
+  min-width: 1.5em;
+  max-width: 1.5em;
+  margin: 0 10px;
+}
+nav ul li.search .menu-item .search-box {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: block;
+  text-transform: none;
+  font-weight: 600;
+  color: #A3A2A2;
+  padding-right: 25px;
+  white-space: nowrap;
+  transition: opacity .3s;
+  opacity: 0;
+}
+
+nav.search-box-open li {
+  flex: 0 !important;
+}
+nav.search-box-open li.brand .brand-label {
+  opacity: 0;
+}
+nav.search-box-open li.search {
+  flex: 3 !important;
+}
+nav.search-box-open li.search .search-box {
+  transition: opacity .2s .3s !important;
+  opacity: 1 !important;
+}

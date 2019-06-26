@@ -1,0 +1,53 @@
+{% load staticfiles  %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %} {% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+        {% block head %}
+        {% endblock %}
+    </head>
+
+    <body>
+        <section>
+          <nav class="search-box-ope">
+            <ul>
+              <li class="brand">
+                  <div class="d-flex justify-content-center">
+                     <a class="menu-item" href="{% url 'posts:index' %}"><img src="{% static 'banner4.png' %}">
+                     </a>
+                  </div>
+              </li>
+              <li class="recruit"><a class="menu-item" href="{% url 'posts:create' %}">recruit</a></li>
+              <li class="match"><a class="menu-item" href="{% url 'match:set_conditions' %}">Match</a></li>
+              <li class="search">
+                <a class="menu-item" href="{% url 'posts:search' %}">
+                  <span class="search-box">keyword</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25.781" height="25.719" viewBox="0 0 25.781 25.719">
+                      <defs>
+                        <style>
+                          .cls-1 {
+                            fill: #ff4e45;
+                            fill-rule: evenodd;
+                          }
+                        </style>
+                      </defs>
+                      <path id="Search" class="cls-1" d="M767.634,49.718L761.6,43.849a10.593,10.593,0,0,0-.368-14.935,11.385,11.385,0,0,0-15.773,0,10.626,10.626,0,0,0,0,15.329,11.37,11.37,0,0,0,14.571,1l6.108,5.936a1.083,1.083,0,0,0,1.5,0A1.01,1.01,0,0,0,767.634,49.718Zm-20.678-6.935a8.611,8.611,0,0,1,0-12.409,9.217,9.217,0,0,1,12.769,0,8.6,8.6,0,0,1,0,12.409A9.215,9.215,0,0,1,746.956,42.783Z" transform="translate(-742.188 -25.75)"/>
+                </svg>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        <script>
+            $('.search > a').click(function() {
+              $('nav').toggleClass('search-box-open');
+              return false;
+            });
+        </script>
+
+
+        </section>
+    </body>
+</html>
