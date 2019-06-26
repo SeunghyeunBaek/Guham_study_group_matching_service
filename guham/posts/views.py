@@ -3,6 +3,7 @@ from .forms import PostForm
 from .models import Post, HashTag
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+from django.core.paginator import Paginator
 
 from konlpy.tag import Okt  # 명사 추출
 from sklearn.feature_extraction.text import TfidfVectorizer  # 벡터화
@@ -14,6 +15,10 @@ okt = Okt()
 # READ ALL
 def index(request):
     posts = Post.objects.all().order_by('-id')
+    paginator = Paginator(posts, 6)  # Show 25 contacts per page
+
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
     context = {
         'posts': posts
     }

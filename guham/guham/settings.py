@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'imagekit',
     'import_export',
+    'bootstrap_pagination',
 ]
 
 MIDDLEWARE = [

@@ -1,5 +1,6 @@
 {% extends 'posts/base.html' %}
 {% load match_templatetag %}
+{% load bootstrap_pagination %}
 
 {% block title %} {% endblock %}
 
@@ -29,6 +30,10 @@
         {% endfor %}
     </div>
 </div>
+<div class="d-flex justify-content-center" style="font-family: 'Noto Serif KR'">
+    {% bootstrap_paginate posts range=5 %}
+</div>
+
 <a href="{% url 'match:set_conditions' %}" class="btn btn-outline-warning">취소 => match:set_conditions</a>
 
 {% endblock %}

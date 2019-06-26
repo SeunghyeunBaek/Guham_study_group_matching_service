@@ -1,15 +1,24 @@
 {% extends 'posts/base.html' %}
-
+{% load staticfiles  %}
+{% load bootstrap_pagination %}
 {% block title %} posts:index {% endblock %}
 {% block body %}
-{% if posts %}
-<div class="card-columns">
-    {% for post in posts %}
-        {% include 'posts/_post.html' %}
-    {% endfor %}
-    {% else %}
-    <p>검색결과가 없습니다</p>
-    <a href="{% url 'posts:index' %}" class="btn btn-outline-primary">posts:index</a>
-    {% endif %}
-</div>
+
+    <div class="card-columns">
+        {% if posts %}
+                {% for post in posts %}
+                    {% include 'posts/_post.html' %}
+                {% endfor %}
+        {% else %}
+            <div class="d-flex justify-content-center mt-5">
+                <p style="font-family: 'Noto Serif KR';text-align:center">동료가 없군...</p>
+            </div>
+            <div class="d-flex justify-content-center">
+                <a href="{% url 'posts:index' %}"><img src="{% static 'home_button.png' %}"></a>
+            </div>
+        {% endif %}
+    </div>
+    <div class="d-flex justify-content-center" style="font-family: 'Noto Serif KR'">
+        {% bootstrap_paginate posts range=10 %}
+    </div>
 {% endblock %}

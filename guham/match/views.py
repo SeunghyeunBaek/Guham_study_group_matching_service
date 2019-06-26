@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from konlpy.tag import Okt  # 명사 추출
 from sklearn.feature_extraction.text import TfidfVectorizer  # 벡터화
 from sklearn.metrics.pairwise import cosine_similarity  # 코사인 유사도
+from django.core.paginator import Paginator
+
 import re
 
 from fuzzywuzzy import fuzz
@@ -88,9 +90,13 @@ def matched_users(request, match_post_id):
                                 key=lambda post: (.8 * post.score_hash_tag(my_hash_tag) + .2 * sim_mat[
                                     post2corpus.get(match_post_id), post2corpus.get(post.id)]),
                                 reverse=True)
+    paginator = Paginator(match_posts_sorted, 6)  # Show 25 contacts per page
+
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
     context = {
         'my_post': my_post,
-        'posts': match_posts_sorted
+        'posts': posts
     }
     return render(request, 'match/matched_users.html', context)
 
