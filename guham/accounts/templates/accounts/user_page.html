@@ -1,29 +1,83 @@
 {% extends 'posts/base.html' %}
 
-{% block title %} {% endblock %}
-
-{% block body %}
-<div class="row">
-    <!--        프로필 이미지-->
-    <div class="col-4">
-        <img src="https://picsum.photos/id/{{user_selected.id}}/200/" class="rounded-circle">
-    </div>
-    <!--    기타 개인 정보 -->
-    <div class="col-8">
-        <h1>user name: {{user}}</h1>
-        <p> 모집 글 수: {{user_selected.post_set.count}}</p>
-        <p> 장바구니에 담은 사람들</p>
-            {% for user in user_selected.pick.all %}
-                <a href="{% url 'accounts:user_page' user.id %}">{{user}}</a>
-            {% endfor %}
-    </div>
-</div>
-
-<!--해당 유저가 작성한 게시글-->
-<div class="card-columns">
-    {% for post in user.post_set.all %}
-    {% include 'posts/_post.html' %}
-    {% endfor %}
-</div>
+{% block head %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/user_page.css' %}"/>
 {% endblock %}
 
+{% block body %}
+{% load staticfiles %}
+{% load static %}
+<div class="container">
+    <div class="col-md-6">
+        <div class="profile-container">
+            <div class="profile-header row">
+
+                <div class="col-md-12 col-sm-12 text-center">
+                    {% if user_selected.image %}
+                    <img src="{{ user_selected.image.url }}" class="rounded-circle">
+                    {% else %}
+                    <img src="https://picsum.photos/id/{{user_selected.id}}/200/" class="rounded-circle">
+                    {% endif %}
+                </div>
+                <div class="col-md-12 col-sm-12 profile-info">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="header-fullname">{{user}}</div>
+                        </div>
+                    </div>
+
+                    <div class="header-information">
+                        {{user_selected.introduce}}
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12 profile-stats">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-3 col-xs-12 stats-col">
+                            <div class="stats-value pink">{{user_selected.pick.count}}</div>
+                            <div class="stats-title">PICK</div>
+                        </div>
+                        <div class="col-md-4 col-sm-3 col-xs-12 stats-col">
+                            <div class="stats-value pink">{{user_selected.picker.count}}</div>
+                            <div class="stats-title">PICKERS</div>
+                        </div>
+                        <div class="col-md-4 col-sm-3 col-xs-12 stats-col">
+                            <div class="stats-value pink">{{user_selected.post_set.count}}</div>
+                            <div class="stats-title">MATCH_POSTS</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
+                            {% if user_selected in user.pick.all %}
+                            <a href="{% url 'accounts:pick' user_selected.id %}"
+                               class="btn btn-palegreen btn-sm pull-right btn-follow">
+                                <i class="fa fa-check"></i> BYE
+                            </a>
+                            {% else %}
+                            <a href="{% url 'accounts:pick' user_selected.id %}"
+                               class="btn btn-palegreen btn-sm pull-right btn-follow">
+                                <i class="fa fa-check"></i> PICK ME
+                            </a>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
+                            {% if user == user_selected %}
+                            <a href="{% url 'accounts:update' user_selected.id %}"
+                               class="btn btn-palegreen btn-sm pull-right btn-follow">
+                                <i class="fa fa-check"></i> UPDATE
+                            </a>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

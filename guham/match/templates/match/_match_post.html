@@ -4,7 +4,7 @@
 <div class="card">
     <div id="study_card_header" class="card-header">
         <h5 class="d-flex justify-content-center">
-
+            <a href="{% url 'accounts:user_page' post.user.id %}">{{post.user}}</a>
         </h5>
     </div>
     <div id="study_card" class="card-body">
@@ -33,14 +33,18 @@
 
         <div class="d-flex justify-content-center">
             <a href="{% url 'match:detail' post.id %}" class="btn btn-outline-primary text-center w-100">자세히</a>
-            {% if post.user in user.pick.all %}
-            <a href="{% url 'accounts:pick' post.user.id %}">
-                <button class="btn btn-outline-primary" id="cart">장바구니에서 제거</button>
-            </a>
-            {% else %}
-            <a href="{% url 'accounts:pick' post.user.id %}">
-                <button class="btn btn-outline-primary">장바구니에 담기</button>
-            </a>
+            {% if user != post.user %}
+                {% if post.user in user.pick.all %}
+                <!--            장바구니에서 제거 -->
+                <button class="btn btn-outline-success" data-id="{{post.user.id}}">
+                    <i class="fas fa-cart-arrow-down" data-id="{{post.user.id}}"></i>
+                </button>
+                {% else %}
+                <!--            장바구니에서 추가 -->
+                <button class="btn btn-outline-success" data-id="{{post.user.id}}">
+                    <i class="fas fa-cart-plus" data-id="{{post.user.id}}"></i>
+                </button>
+                {% endif %}
             {% endif %}
         </div>
     </div>
