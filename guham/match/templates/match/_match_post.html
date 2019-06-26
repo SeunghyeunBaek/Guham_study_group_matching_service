@@ -1,0 +1,60 @@
+{% load bootstrap4 %}
+{% load static %}
+
+<div class="card">
+    <div id="study_card_header" class="card-header">
+        <h5 class="d-flex justify-content-center">
+
+        </h5>
+    </div>
+    <div id="study_card" class="card-body">
+        <p class="card-text">
+        <div class="row d-flex align-items-center">
+            <div class="col-6 d-flex justify-content-center flex-wrap">
+                {% if post.category == 'python' %}
+                <img src="{% static 'python3.png' %}" alt="python">
+                <h5><strong>python</strong></h5>
+                {% elif post.category == 'r' %}
+                <img src="{% static 'r5.png'%}" alt="R">
+                <h5><strong>R</strong></h5>
+                {% elif post.category == 'java' %}
+                <img src="{% static 'java1.png'%}" alt="java">
+                <h5><strong>java</strong></h5>
+                {% elif post.category == 'c' %}
+                <img src="{% static 'c6.png'%}" alt="c">
+                <h5><strong>C</strong></h5>
+                {% endif %}
+            </div>
+            <div class="col-6 d-flex justify-content-center flex-wrap align-items-center">
+                <strong>{{post.place}}</strong>
+            </div>
+        </div>
+        </p>
+
+        <div class="d-flex justify-content-center">
+            <a href="{% url 'match:detail' post.id %}" class="btn btn-outline-primary text-center w-100">자세히</a>
+            {% if post.user in user.pick.all %}
+            <a href="{% url 'accounts:pick' post.user.id %}">
+                <button class="btn btn-outline-primary" id="cart">장바구니에서 제거</button>
+            </a>
+            {% else %}
+            <a href="{% url 'accounts:pick' post.user.id %}">
+                <button class="btn btn-outline-primary">장바구니에 담기</button>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="card-footer">
+        <small class="text-muted">
+            <strong>
+                {% if post.hash_tag.all %}
+                {% for hash_tag in post.hash_tag.all %}
+                <a href="{% url 'match:hash_tagged_posts' my_post.id hash_tag.id %}">{{hash_tag.content}}</a>
+                {% endfor %}
+                {% else %}
+                <h5>해시태그가 없어요 ㅜㅜ</h5>
+                {% endif %}
+            </strong>
+        </small>
+    </div>
+</div>

@@ -25,35 +25,7 @@
     <hr>
     <div class="row">
         {% for post in posts %}
-        {% load bootstrap4 %}
-        <div class="card">
-            <div class="card-body">
-                <img src="https://picsum.photos/id/{{ post.id }}/250/100" class="card-img-top">
-                <p class="card-text">
-                    <br>user: <a href="{% url 'accounts:user_page' post.user.id %}">{{ post.user }}</a>
-                    <br>category : {{ post.category }}
-                    <br>place : {{ post.place }}
-                <p>
-                    {% for hash_tag in post.hash_tag.all %}
-                    <a href="{% url 'match:hash_tagged_posts' my_post.id hash_tag.id %}">{{hash_tag.content}}</a>,
-                    {% endfor %}
-                </p>
-                <br>
-                {% if post.user in user.pick.all %}
-                <a href="{% url 'accounts:pick' post.user.id %}">
-                    <button class="btn btn-outline-primary" id="cart">장바구니에서 제거</button>
-                </a>
-                {% else %}
-                <a href="{% url 'accounts:pick' post.user.id %}">
-                    <button class="btn btn-outline-primary">장바구니에 담기</button>
-                </a>
-                {% endif %}
-                <a href="{% url 'match:detail' post.id %}">
-                    <button class="btn btn-outline-primary">상세보기</button>
-                </a>
-                </p>
-            </div>
-        </div>
+            {% include 'match/_match_post.html' %}
         {% endfor %}
     </div>
 </div>
