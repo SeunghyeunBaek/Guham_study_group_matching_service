@@ -87,7 +87,7 @@ def matched_users(request, match_post_id):
     sim_mat = cosine_similarity(tfidf_mat)
     # 더러운 코딩 가즈아
     match_posts_sorted = sorted(match_posts,
-                                key=lambda post: (.8 * post.score_hash_tag(my_hash_tag) + .2 * sim_mat[
+                                key=lambda post: (.8 * post.score_hash_tag(my_hash_tag) + .2 * 100 * sim_mat[
                                     post2corpus.get(match_post_id), post2corpus.get(post.id)]),
                                 reverse=True)
     paginator = Paginator(match_posts_sorted, 6)  # Show 25 contacts per page
@@ -96,7 +96,7 @@ def matched_users(request, match_post_id):
     posts = paginator.get_page(page)
     context = {
         'my_post': my_post,
-        'posts': posts
+        'posts': posts,
     }
     return render(request, 'match/matched_users.html', context)
 

@@ -87,12 +87,22 @@
                         <div class="header-information">
                             <h5>MY PICK</h5>
                             {% for user in user_selected.pick.all %}
-                                <a href="{% url 'accounts:user_page' user.id %}"> {{user}}, </a>
+                            <a href="{% url 'accounts:user_page' user.id %}"> {{user}}, </a>
                             {% endfor %}
                             <hr>
                             <h5>PICKERS</h5>
                             {% for user in user_selected.picker.all %}
-                                <a href="{% url 'accounts:user_page' user.id %}"> {{user}}, </a>
+                            <a href="{% url 'accounts:user_page' user.id %}"> {{user}}, </a>
+                            {% endfor %}
+                            <hr>
+                            <h5>APPLIED STUDY GROUPS</h5>
+                            {% for post in user_selected.applied_post.all %}
+                            <p><a href="{% url 'posts:detail' post.id %}"> {{post}} </a></p>
+                            {% endfor %}
+
+                            <h5>MY STUDY GROUPS</h5>
+                            {% for post in user_selected.post_set.all %}
+                            <p><a href="{% url 'posts:detail' post.id %}"> {{post}} </a></p>
                             {% endfor %}
                         </div>
                     </div>
