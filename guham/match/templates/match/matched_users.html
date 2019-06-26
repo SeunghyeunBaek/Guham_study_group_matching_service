@@ -8,30 +8,57 @@
 {% block body %}
 
 <div class="d-flex justify-content-center">
-    <div class="col-8">
+    <div class="col-10">
         <div class="mt-5" style="font-family: 'Noto Serif KR';text-align:center" >
             <h2>매칭판</h2>
         </div>
 
-<div class="container">
+<div class="container mt-5">
     <div class="card">
+        <div class="card-header" style="font-family: 'Noto Serif KR', serif;background-color:rgb(220,230,242)">
+            <h5 class="d-flex justify-content-center">My Match Post</h5>
+        </div>
         <div class="card-body">
-            <p class="card-text">
-            <h1>my match post</h1>
-            <br>user: <a href="{% url 'accounts:user_page' my_post.user.id %}">{{ my_post.user }}</a>
-            <br>category : {{ my_post.category }}
-            <br>place : {{ my_post.place }}
-            <p>
-                {% for hash_tag in post.hash_tag.all %}
-                <a href="{% url 'match:hash_tagged_posts' my_post.id hash_tag.id %}">{{hash_tag.content}}</a>,
+            <div class="card-text">
+            <h1 class="d-flex justify-content-center"><a href="{% url 'accounts:user_page' my_post.user.id %}">{{ my_post.user }}</a></h1>
+            <div class="row d-flex align-items-center d-flex justify-content-center">
+                <div class="col-6 d-flex justify-content-center mt-3">
+                    {% if my_post.category == 'python' %}
+                    <img src="{% static 'python3.png' %}" alt="python">
+<!--                    <h5><strong>python</strong></h5>-->
+                    {% elif my_post.category == 'r' %}
+                    <img src="{% static 'r5.png'%}" alt="R">
+<!--                    <h5><strong>R</strong></h5>-->
+                    {% elif my_post.category == 'java' %}
+                    <img src="{% static 'java1.png'%}" alt="java">
+<!--                    <h5><strong>java</strong></h5>-->
+                    {% elif my_post.category == 'c' %}
+                    <img src="{% static 'c6.png'%}" alt="c">
+<!--                    <h5><strong>C</strong></h5>-->
+                    {% endif %}
+                </div>
+                <div class="col-6 d-flex justify-content-center align-items-center" style="text-align:center">
+                    <h3 style="font-family: 'Stylish', sans-serif;">{{ my_post.place }} </h3>
+                </div>
+            </div>
+
+        <div class="card-footer mt-4" style="font-family: 'Noto Serif KR', serif;">
+            <small class="text-muted">
+                {% if my_post.hash_tag.all %}
+                {% for hash_tag in my_post.hash_tag.all %}
+                <a href="{% url 'match:hash_tagged_posts' my_post.id hash_tag.id %}">{{hash_tag.content}}</a>
                 {% endfor %}
-            </p>
-            </p>
+                {% else %}
+                <div class="d-flex justify-content-center">
+                    <p style="font-family: 'Noto Serif KR';text-align:center"> 해시태그가 없군...</p>
+                </div>
+                {% endif %}
+            </small>
         </div>
     </div>
-    <hr>
+            <hr>
 
-    <div class="row">
+    <div class="row d-flex justify-content-center mt-5">
         {% for post in posts %}
             {% include 'match/_match_post.html' %}
         {% endfor %}
@@ -46,6 +73,3 @@
 </div>
 
 {% endblock %}
-
-
-

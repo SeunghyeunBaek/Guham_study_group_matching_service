@@ -1,15 +1,78 @@
 {% extends 'posts/base.html' %}
+{% load bootstrap4 %}
+{% load staticfiles  %}
 
-{% block title %} {% endblock %}
+{% block title %} posts:detail {% endblock %}
 
 {% block body %}
-<h2>user : {{post_selected.user}}</h2>
-<p>content: {{post_selected.content}}</p>
-<p>hashtags: {{post_selected.hash_tag_list}}</p>
-<a href="{% url 'match:matched_users' user.id %}" class="btn btn-outline-primary">뒤로가기</a>
-{% if post_selected.user in user.pick.all %}
-<a href="{% url 'accounts:pick' post_selected.user.id %}" class="btn btn-outline-danger">장바구에서 빼기</a>
-{% else %}
-<a href="{% url 'accounts:pick' post_selected.user.id %}" class="btn btn-outline-danger">장바구니 담기</a>
-{% endif %}
+<div class="d-flex justify-content-center">
+    <div class="col-8">
+        <div class="card mt-4">
+            <div id="study_card_header" class="card-header" style="font-family: 'Noto Serif KR', serif;background-color:rgb(220,230,242)">
+                <h2 class="d-flex justify-content-center"><strong>{{ post_selected.user }}</strong></h2>
+            </div>
+            <div class="card-body">
+                <div class="card-body">
+                    <ul class="list-group list-group-flush" style="font-family: 'Noto Serif KR', serif;">
+                        <li class="list-group-item">
+                            {% if post.hash_tag.all %}
+                            {% for hash_tag in post.hash_tag.all %}
+                            <a href="{% url 'match:hash_tagged_posts' my_post.id hash_tag.id %}">{{hash_tag.content}}</a>
+                            {% endfor %}
+                            {% else %}
+                            <div class="d-flex justify-content-center">
+                                <p style="font-family: 'Noto Serif KR';text-align:center"> 해시태그가 없군...</p>
+                            </div>
+                            {% endif %}
+                        </li>
+                    </ul>
+                <div class="card-body">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-6 d-flex justify-content-end mt-4">
+                            {% if post_selected.category == 'python' %}
+                            <img src="{% static 'python3.png'%}">
+                            <!--                                    <h5><strong>python</strong></image></h5>-->
+                            {% elif post_selected.category == 'r' %}
+                            <img src="{% static 'r5.png'%}">
+                            <!--                                    <h5><strong>R</strong></image></h5>-->
+                            {% elif post_selected.category == 'java' %}
+                            <img src="{% static 'java1.png'%}">
+                            <!--                                    <h5><strong>java</strong></image></h5>-->
+                            {% elif post_selected.category == 'c' %}
+                            <img src="{% static 'c6.png'%}">
+                            <!--                                    <h5><strong>C</strong></img></h5>-->
+                            {% endif %}
+                        </div>
+                        <div class="col-6 d-flex justify-content-center flex-wrap align-items-center mt-4">
+                            <h3 style="font-family: 'Stylish', sans-serif;text-align:center">{{ post_selected.place }} </h3>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="card-body"
+                         style="font-family: 'Noto Serif KR', serif;word-spacing:4px;line-height:2.3em">
+                        <hr>
+                        {{ post_selected.content }}
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-nowrap justify-content-end">
+                <a class="mr-1" href="{% url 'match:matched_users' user.id %}"><img src="{% static 'home_button.png' %}"></a>
+                    {% if user != post.user %}
+                        {% if post.user in user.pick.all %}
+                        <!--            장바구니에서 제거 -->
+                        <button class="btn btn-outline-success" data-id="{{post.user.id}}">
+                            <i class="fas fa-cart-arrow-down" data-id="{{post.user.id}}"></i>
+                        </button>
+                        {% else %}
+                        <!--            장바구니에서 추가 -->
+                        <button class="btn btn-outline-success" data-id="{{post.user.id}}">
+                            <i class="fas fa-cart-plus" data-id="{{post.user.id}}"></i>
+                        </button>
+                        {% endif %}
+                    {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
