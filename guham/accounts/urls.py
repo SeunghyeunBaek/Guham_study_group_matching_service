@@ -11,4 +11,5 @@ urlpatterns = [
 
     path('<int:user_id>/', views.user_page, name='user_page'),  # 유저 페이지
     path('<int:user_id>/pick/', views.pick, name='pick'),  # 장바구니에 담기
+    path('<int:user_id>/pick/clean/', views.clean, name='clean')  # 픽 지우기
 ]
