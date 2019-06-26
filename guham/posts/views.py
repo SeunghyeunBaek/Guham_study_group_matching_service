@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import PostForm
 from .models import Post, HashTag
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 
 from konlpy.tag import Okt  # 명사 추출
 from sklearn.feature_extraction.text import TfidfVectorizer  # 벡터화
@@ -114,6 +115,24 @@ def update(request, post_id):
         'form': form
     }
     return render(request, 'posts/form.html', context)
+
+
+def apply(request, post_id):
+    me = request.user
+    post = Post.objects.get(id=post_id)
+
+    # 이미 지원한 스터디라면
+    if post in me.applied_post.all():
+        me.applied_post.remove(post)
+        picked = False
+    # 이전에 지원한 적 없다면
+    else:
+        me.applied_post.add(post)
+        picked = True
+    context = {
+        'picked': picked,
+    }
+    return JsonResponse(context)
 
 
 def test(request):
