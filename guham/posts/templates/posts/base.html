@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/ee70558903.js"></script>
+    {% block head %} {% endblock %}
 </head>
 
 <body>
@@ -111,6 +112,27 @@
 </body>
 </html>
 
+<!--javascript for accounts:pick -->
 <script>
+    const pick_buttons = document.querySelectorAll('#pick')
 
+    pick_buttons.forEach(function (button) {
+        button.addEventListener('click', e = > {
+            const user_id = e.target.dataset.id
+            axios.get(`/accounts/${user_id}/pick/`).then(
+                function (response) {
+                    // 이미 장바구니에 담긴 사용자라면
+                    if(response.picked){
+                        e.target.remove('btn-outline-primary')
+                    }
+                    // 장바구니에 담겨있지 않은 사용자일 때
+                    else{
+
+                    }
+                }
+            )
+
+        }
+    )
+    })
 </script>

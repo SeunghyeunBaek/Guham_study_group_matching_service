@@ -34,8 +34,6 @@ def search(request):
     - query = ''
     16개 if_else 구문 작성해야함
     '''
-
-
     # 조건에 맞는 포스트 검색
     post_searched = Post.objects.filter(study_place=study_place,
                                         study_category=study_category,
