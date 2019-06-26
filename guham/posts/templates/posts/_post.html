@@ -1,4 +1,5 @@
 {% load bootstrap4 %}
+{% load staticfiles  %}
 
 <div class="card">
     <div id="study_card_header" class="card-header">
@@ -13,19 +14,16 @@
         <div class="col-6 d-flex justify-content-center flex-wrap">
             {% if post.study_category == 'python' %}
             <image src="{% static 'python3.png'%}">
-                <h5><strong>python</strong></image>
-            </h5>
+                <h5><strong>python</strong></h5></image>
             {% elif post.study_category == 'r' %}
             <image src="{% static 'r5.png'%}">
-                <h5><strong>R</strong></image>
-            </h5>
+                <h5><strong>R</strong></h5></image>
             {% elif post.study_category == 'java' %}
             <image src="{% static 'java1.png'%}">
-                <h5><strong>java</strong></image>
-            </h5>
+                <h5><strong>java</strong></h5></image>
             {% elif post.study_category == 'c' %}
             <image src="{% static 'c6.png'%}">
-                <h5><strong>C</strong></img></h5>
+                <h5><strong>C</strong></h5></image>
                 {% endif %}
         </div>
         <div class="col-6 d-flex justify-content-center flex-wrap align-items-center">
