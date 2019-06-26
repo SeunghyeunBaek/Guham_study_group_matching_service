@@ -8,6 +8,7 @@ class PostResource(resources.ModelResource):
 
     class Meta:
         model = Post
+        fields = ['id', 'user']
 
 
 class PostAdmin(ImportExportModelAdmin):
