@@ -1,18 +1,18 @@
 {% load bootstrap4 %}
+{% load static %}
 
 <div class="card">
     <div id="study_card_header" class="card-header">
         <h5 class="d-flex justify-content-center"><strong>{{ post.title }}</strong></h5>
     </div>
-
     <div id="study_card" class="card-body">
         <p class="card-text">
             {{ post.hash_tag_list }}
         <hr>
-        < class="row d-flex align-items-center">
+        <div class="row d-flex align-items-center">
         <div class="col-6 d-flex justify-content-center flex-wrap">
             {% if post.study_category == 'python' %}
-            <image src="{% static 'python3.png'%}">
+            <image src="{% static 'python3.png' %}">
                 <h5><strong>python</strong></image>
             </h5>
             {% elif post.study_category == 'r' %}
@@ -26,7 +26,7 @@
             {% elif post.study_category == 'c' %}
             <image src="{% static 'c6.png'%}">
                 <h5><strong>C</strong></img></h5>
-                {% endif %}
+            {% endif %}
         </div>
         <div class="col-6 d-flex justify-content-center flex-wrap align-items-center">
             <image src="{% static 'week1_2.png'%}"></image>
