@@ -25,7 +25,6 @@ def search(request):
     study_category = request.POST.get('study_category')
     study_day = request.POST.get('study_day')
     query = request.POST.get('query')
-
     # 조건에 맞는 포스트 검색
     post_searched = Post.objects.filter(study_place=study_place,
                                         study_category=study_category,
