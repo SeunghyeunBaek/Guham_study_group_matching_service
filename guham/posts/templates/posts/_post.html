@@ -1,44 +1,44 @@
 {% load bootstrap4 %}
-{% load static %}
+{% load staticfiles  %}
 
-<div class="card">
-    <div id="study_card_header" class="card-header">
-        <h5 class="d-flex justify-content-center"><strong>{{ post.title }}</strong></h5>
-    </div>
-    <div id="study_card" class="card-columns">
-        <p class="card-text">
-            {{ post.hash_tag_list }}
-        <hr>
-        <div class="row d-flex align-items-center">
-            <div class="col-6 d-flex justify-content-center flex-wrap">
-                {% if post.study_category == 'python' %}
-                <img src="{% static 'python3.png' %}" alt="python">
-                <h5><strong>python</strong></h5>
-                {% elif post.study_category == 'r' %}
-                <img src="{% static 'r5.png'%}" alt="R">
-                <h5><strong>R</strong></h5>
-                {% elif post.study_category == 'java' %}
-                <img src="{% static 'java1.png'%}" alt="java">
-                <h5><strong>java</strong></h5>
-                {% elif post.study_category == 'c' %}
-                <img src="{% static 'c6.png'%}" alt="c">
-                <h5><strong>C</strong></h5>
-                {% endif %}
-            </div>
-            <div class="col-6 d-flex justify-content-center flex-wrap align-items-center">
-                <img src="{% static 'week1_2.png'%}">
-                <img src="{% static '1hour.png'%}">
-                <img src="{% static '1hour.png'%}">
+<div id="study_card" class="card-duck">
+    <div class="card">
+        <div id="study_card_header" class="card-header" style="font-family: 'Noto Serif KR', serif;">
+            <h5 class="d-flex justify-content-center"><strong>{{ post.title }}</strong></h5>
+        </div>
+        <div class="card-body">
+            <p style="font-family: 'Noto Serif KR', serif;">{{ post.hash_tag_list }}</p>
+           <hr>
+            <div class="row d-flex align-items-center">
+                <div class="col-6 d-flex justify-content-center flex-wrap">
+                    {% if post.study_category == 'python' %}
+                    <img src="{% static 'python3.png' %}" alt="python">
+                    <h5><strong>python</strong></h5>
+                    {% elif post.study_category == 'r' %}
+                    <img src="{% static 'r5.png'%}" alt="R">
+                    <h5><strong>R</strong></h5>
+                    {% elif post.study_category == 'java' %}
+                    <img src="{% static 'java1.png'%}" alt="java">
+                    <h5><strong>java</strong></h5>
+                    {% elif post.study_category == 'c' %}
+                    <img src="{% static 'c6.png'%}" alt="c">
+                    <h5><strong>C</strong></h5>
+                    {% endif %}
+                </div>
+                <div class="col-6 d-flex justify-content-center flex-wrap align-items-center">
+                    <h3 style="font-family: 'Stylish', sans-serif;"> {{ post.study_day }} {{ post.study_time }}</h3>
+                    <br>
+                    <h3 style="font-family: 'Stylish', sans-serif;"> {{ post.study_place }} </h3>
+                </div>
             </div>
         </div>
-        </p>
         <div class="d-flex justify-content-center">
             <a href="{% url 'posts:detail' post.id %}" class="btn btn-primary text-center w-100">스터디 더 알아보기</a>
         </div>
-    </div>
-    <div class="card-footer">
-        <small class="text-muted"><strong>{{ post.user }}</strong>
-            <br>{{ post.created_at }}
-        </small>
+        <div class="card-footer">
+            <small class="text-muted"><strong>{{ post.user }}</strong>
+                <br>{{ post.created_at }}
+            </small>
+        </div>
     </div>
 </div>
