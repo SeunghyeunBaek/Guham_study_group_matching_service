@@ -25,15 +25,15 @@ def search(request):
     study_category = request.POST.get('study_category')
     study_day = request.POST.get('study_day')
     query = request.POST.get('query')
-    raise()
-    '''
-    none 조건
-    - study_category = '카테고리'
-    - study_place = '장소'
-    - study_day = '시간'
-    - query = ''
-    16개 if_else 구문 작성해야함
-    '''
+    # raise()
+    # '''
+    # none 조건
+    # - study_category = '카테고리'
+    # - study_place = '장소'
+    # - study_day = '시간'
+    # - query = ''
+    # 16개 if_else 구문 작성해야함
+    # '''
 
 
     # 조건에 맞는 포스트 검색
