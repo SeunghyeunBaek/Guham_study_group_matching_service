@@ -83,7 +83,6 @@
 </div>
 {% endif %}
 
-
 <div class="container mt-4" style="background-color:rgb(250,188,61)">
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="collapse navbar-collapse d-flex align-self-end" id="navbarNavAltMarkup">
@@ -116,44 +115,52 @@
         const pick_buttons = document.querySelectorAll('.btn-outline-success')
         pick_buttons.forEach(function (button) {
             button.addEventListener('click', e => {
-                const user_id = e.target.dataset.id
-                axios.get(`/accounts/${user_id}/pick/`)
-                    .then(function (response) {
-                            // 이미 장바구니에 담긴 사용자라면
-                            //버튼을 눌렀다면
-                            if (e.target.children.length == 1) {
-                                if (response.data.picked) {
-                                    e.target.classList.remove('btn-outline-success')
-                                    e.target.classList.add('btn-outline-warning')
-                                    e.target.children[0].classList.remove('fa-cart-plus')
-                                    e.target.children[0].classList.add('fa-cart-arrow-down')
-                                }
-                                // 장바구니에 담겨있지 않은 사용자일 때
-                                else {
-                                    e.target.classList.add('btn-outline-success')
-                                    e.target.classList.remove('btn-outline-warning')
-                                    e.target.children[0].classList.remove('fa-cart-arrow-down')
-                                    e.target.children[0].classList.add('fa-cart-plus')
-                                }
+
+                if (window.location['href'].includes('match')) {
+                    const user_id = e.target.dataset.id
+                    axios_obj = axios.get(`/accounts/${user_id}/pick/`)
+                }
+                else {
+                    const post_id = e.target.dataset.id
+                    axios_obj = axios.get(`/posts/${post_id}/apply/`)
+                }
+
+                axios_obj.then(function (response) {
+                        // 이미 장바구니에 담긴 사용자라면
+                        //버튼을 눌렀다면
+                        if (e.target.children.length == 1) {
+                            if (response.data.picked) {
+                                e.target.classList.remove('btn-outline-success')
+                                e.target.classList.add('btn-outline-warning')
+                                e.target.children[0].classList.remove('fa-cart-plus')
+                                e.target.children[0].classList.add('fa-cart-arrow-down')
                             }
-                            // 아이콘을 눌렀다면
+                            // 장바구니에 담겨있지 않은 사용자일 때
                             else {
-                                if (response.data.picked) {
-                                    // e.target.parents[0].remove('btn-outline-success')
-                                    // e.target.parents[0].add('btn-outline-warning')
-                                    e.target.classList.remove('fa-cart-plus')
-                                    e.target.classList.add('fa-cart-arrow-down')
-                                }
-                                // 장바구니에 담겨있지 않은 사용자일 때
-                                else {
-                                    // e.target.parents[0].add('btn-outline-success')
-                                    // e.target.parents[0].remove('btn-outline-warning')
-                                    e.target.classList.remove('fa-cart-arrow-down')
-                                    e.target.classList.add('fa-cart-plus')
-                                }
+                                e.target.classList.add('btn-outline-success')
+                                e.target.classList.remove('btn-outline-warning')
+                                e.target.children[0].classList.remove('fa-cart-arrow-down')
+                                e.target.children[0].classList.add('fa-cart-plus')
                             }
                         }
-                    )
+                        // 아이콘을 눌렀다면
+                        else {
+                            if (response.data.picked) {
+                                e.target.parentNode.classList.remove('btn-outline-success')
+                                e.target.parentNode.classList.add('btn-outline-warning')
+                                e.target.classList.remove('fa-cart-plus')
+                                e.target.classList.add('fa-cart-arrow-down')
+                            }
+                            // 장바구니에 담겨있지 않은 사용자일 때
+                            else {
+                                e.target.parentNode.classList.add('btn-outline-success')
+                                e.target.parentNode.classList.remove('btn-outline-warning')
+                                e.target.classList.remove('fa-cart-arrow-down')
+                                e.target.classList.add('fa-cart-plus')
+                            }
+                        }
+                    }
+                )
             }
                 , true
         )

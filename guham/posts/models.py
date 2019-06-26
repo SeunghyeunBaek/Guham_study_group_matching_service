@@ -37,6 +37,8 @@ class HashTag(models.Model):
 
 class Post(models.Model):
     hash_tag = models.ManyToManyField(HashTag, blank=True, related_name='match_room_tagged')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    applicant = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='applied_post')
     title = models.CharField(max_length=50)
     study_category = models.CharField(max_length=10, choices=STUDY_CATEGORY)
     number_people = models.IntegerField()
@@ -45,5 +47,4 @@ class Post(models.Model):
     study_time = models.CharField(max_length=10, choices=STUDY_TIME)
     content = models.TextField()
     hash_tag_list = models.TextField(blank=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
