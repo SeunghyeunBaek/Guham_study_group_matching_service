@@ -1,15 +1,21 @@
 {% extends 'posts/base.html' %}
 {% load match_templatetag %}
+{% load staticfiles  %}
 {% load bootstrap_pagination %}
 
 {% block title %} {% endblock %}
 
 {% block body %}
-<h1>match:matched_users</h1>
+
+<div class="d-flex justify-content-center">
+    <div class="col-8">
+        <div class="mt-5" style="font-family: 'Noto Serif KR';text-align:center" >
+            <h2>매칭판</h2>
+        </div>
+
 <div class="container">
     <div class="card">
         <div class="card-body">
-            <img src="https://picsum.photos/id/{{ my_post.id }}/250/100" class="card-img-top">
             <p class="card-text">
             <h1>my match post</h1>
             <br>user: <a href="{% url 'accounts:user_page' my_post.user.id %}">{{ my_post.user }}</a>
@@ -24,17 +30,20 @@
         </div>
     </div>
     <hr>
+
     <div class="row">
         {% for post in posts %}
             {% include 'match/_match_post.html' %}
         {% endfor %}
     </div>
 </div>
+
 <div class="d-flex justify-content-center" style="font-family: 'Noto Serif KR'">
     {% bootstrap_paginate posts range=5 %}
 </div>
-
-<a href="{% url 'match:set_conditions' %}" class="btn btn-outline-warning">취소 => match:set_conditions</a>
+<div class="d-flex justify-content-end">
+    <a href="{% url 'match:set_conditions' %}"><img src="{% static 'cancel.png' %}"></a>
+</div>
 
 {% endblock %}
 

@@ -36,6 +36,10 @@ def search(request):
                                         study_category=study_category,
                                         study_day=study_day,
                                         content__contains= query)
+    paginator = Paginator(post_searched, 6)  # Show 25 contacts per page
+
+    page = request.GET.get('page')
+    post_searched = paginator.get_page(page)
     context = {
         'posts': post_searched,
     }

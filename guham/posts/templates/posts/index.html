@@ -4,7 +4,10 @@
 {% block title %} posts:index {% endblock %}
 {% block body %}
 
-    <div class="card-columns">
+    <div class="d-flex justify-content-center mt-5" style="font-family: 'Noto Serif KR';text-align:center">
+        <h2>스터디 모집판</h2>
+    </div>
+    <div class="card-columns mt-4">
         {% if posts %}
                 {% for post in posts %}
                     {% include 'posts/_post.html' %}
