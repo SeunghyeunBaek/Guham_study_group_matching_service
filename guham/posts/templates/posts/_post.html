@@ -25,10 +25,9 @@
 <!--                    <h5><strong>C</strong></h5>-->
                     {% endif %}
                 </div>
-                <div class="col-6 d-flex justify-content-center flex-wrap align-items-center">
-                    <h3 style="font-family: 'Stylish', sans-serif;"> {{ post.study_day }} {{ post.study_time }}</h3>
-                    <br>
-                    <h3 style="font-family: 'Stylish', sans-serif;"> {{ post.study_place }} </h3>
+                <div class="col-6 d-flex justify-content-center flex-wrap align-items-center" style="text-align:center">
+                    <h3 style="font-family: 'Stylish', sans-serif;"> {{ post.study_day }} {{ post.study_time }}
+                    <br>{{ post.study_place }} </h3>
                     <br>
                     <a href="{% url 'posts:detail' post.id %}"><img src="{% static 'more_button2.png' %}" alt="more button"></a>
                 </div>

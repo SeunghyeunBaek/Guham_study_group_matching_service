@@ -1,4 +1,5 @@
 {% extends 'posts/base.html' %}
+{% load staticfiles  %}
 
 {% block title %}
 
@@ -6,12 +7,23 @@
 
 {% block body %}
 {% load bootstrap4 %}
-<form action="" method="POST">
-    {% csrf_token %}
-    {% bootstrap_form form %}
-    {% buttons %}
-        <button type="submit" class="btn btn-outline-primary">posts:create</button>
-        <a href="{% url 'posts:index' %}" class="btn btn-outline-warning">posts:index</a>
-    {% endbuttons %}
-</form>
+<div class="d-flex justify-content-center">
+    <div class="col-8">
+        <div class="mt-5" style="font-family: 'Noto Serif KR';text-align:center" >
+            <h2>스터디원을 모집하자!</h2>
+        </div>
+
+        <form action="" method="POST" class="mt-5" style="font-family: 'Noto Serif KR'">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <div class="d-flex justify-content-end">
+            {% buttons %}
+                <a href="{% url 'posts:index' %}"><img src="{% static 'home_button.png' %}"></a>
+                <button type="submit" class="btn btn-white"><img src="{% static 'submit.png' %}"></button>
+
+            {% endbuttons %}
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}
