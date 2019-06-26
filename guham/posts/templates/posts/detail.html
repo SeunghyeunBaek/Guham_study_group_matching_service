@@ -55,12 +55,12 @@
             <div class="d-flex flex-nowrap justify-content-end">
                 <a class="mr-1" href="{% url 'posts:index' %}"><img src="{% static 'home_button.png' %}"></a>
                 {% if post.user in user.pick.all %}
-                <!--            장바구니에서 제거 -->
+                <!--장바구니에서 제거 -->
                 <button class="btn btn-outline-success" data-id="{{post_selected.id}}">
                     <i class="fas fa-cart-arrows-down" data-id="{{post_selected.id}}"></i>
                 </button>
                 {% else %}
-                <!--            장바구니에서 추가 -->
+                <!-- 장바구니에서 추가 -->
                 <button class="btn btn-outline-success" data-id="{{post_selected.id}}">
                     <i class="fas fa-cart-plus" data-id="{{post_selected.id}}"></i>
                 </button>

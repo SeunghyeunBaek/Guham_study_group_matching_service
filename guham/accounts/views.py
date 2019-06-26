@@ -105,3 +105,9 @@ def pick(request, user_id):
         'picked': picked,
     }
     return JsonResponse(context)
+
+
+def clean(request, user_id):
+    user_selected = User.objects.get(id=user_id)
+    user_selected.pick.clear()
+    return redirect('accounts:user_page', user_id)

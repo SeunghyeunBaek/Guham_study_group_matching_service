@@ -8,75 +8,114 @@
 {% block body %}
 {% load staticfiles %}
 {% load static %}
-<div class="container">
-    <div class="col-md-6">
-        <div class="profile-container">
-            <div class="profile-header row">
+<div class="d-flex flex-row">
+    <div class="container">
+        <div class="col-md-12">
+            <div class="profile-container">
+                <div class="profile-header row">
+                    <div class="col-md-12 col-sm-12 text-center">
+                        {% if user_selected.image %}
+                        <img src="{{ user_selected.image.url }}" class="rounded-circle">
+                        {% else %}
+                        <img src="https://picsum.photos/id/{{user_selected.id}}/200/" class="rounded-circle">
+                        {% endif %}
+                    </div>
+                    <div class="col-md-12 col-sm-12 profile-info">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="header-fullname">{{user_selected}}</div>
+                            </div>
+                        </div>
 
-                <div class="col-md-12 col-sm-12 text-center">
-                    {% if user_selected.image %}
-                    <img src="{{ user_selected.image.url }}" class="rounded-circle">
-                    {% else %}
-                    <img src="https://picsum.photos/id/{{user_selected.id}}/200/" class="rounded-circle">
-                    {% endif %}
+                        <div class="header-information">
+                            {{user_selected.introduce}}
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 col-sm-12 col-xs-12 profile-stats">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-3 col-xs-12 stats-col">
+                                <div class="stats-value pink">{{user_selected.pick.count}}</div>
+                                <div class="stats-title">PICK</div>
+                            </div>
+                            <div class="col-md-4 col-sm-3 col-xs-12 stats-col">
+                                <div class="stats-value pink">{{user_selected.picker.count}}</div>
+                                <div class="stats-title">PICKERS</div>
+                            </div>
+                            <div class="col-md-4 col-sm-3 col-xs-12 stats-col">
+                                <div class="stats-value pink">{{user_selected.matchpost_set.count}}</div>
+                                <div class="stats-title">MATCH_POSTS</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
+                                {% if user_selected in user.pick.all %}
+                                <a href="{% url 'accounts:pick' user_selected.id %}"
+                                   class="btn btn-palegreen btn-sm pull-right btn-follow" data-id="user_selected.id">
+                                    <i class="fa fa-check" data-id="user_selected.id"></i> BYE
+                                </a>
+                                {% else %}
+                                <a href="{% url 'accounts:pick' user_selected.id %}"
+                                   class="btn btn-palegreen btn-sm pull-right btn-follow" data-id="user_selected.id">
+                                    <i class="fa fa-check" data-id="user_selected.id"></i> PICK
+                                </a>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
+                                {% if user == user_selected %}
+                                <a href="{% url 'accounts:update' user_selected.id %}"
+                                   class="btn btn-palegreen btn-sm pull-right btn-follow">
+                                    <i class="fa fa-check"></i> UPDATE
+                                </a>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="col-md-12 col-sm-12 profile-info">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="header-fullname">{{user}}</div>
-                        </div>
-                    </div>
-
-                    <div class="header-information">
-                        {{user_selected.introduce}}
-                    </div>
-                </div>
-
-                <div class="col-md-12 col-sm-12 col-xs-12 profile-stats">
-                    <div class="row">
-                        <div class="col-md-4 col-sm-3 col-xs-12 stats-col">
-                            <div class="stats-value pink">{{user_selected.pick.count}}</div>
-                            <div class="stats-title">PICK</div>
-                        </div>
-                        <div class="col-md-4 col-sm-3 col-xs-12 stats-col">
-                            <div class="stats-value pink">{{user_selected.picker.count}}</div>
-                            <div class="stats-title">PICKERS</div>
-                        </div>
-                        <div class="col-md-4 col-sm-3 col-xs-12 stats-col">
-                            <div class="stats-value pink">{{user_selected.post_set.count}}</div>
-                            <div class="stats-title">MATCH_POSTS</div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
-                            {% if user_selected in user.pick.all %}
-                            <a href="{% url 'accounts:pick' user_selected.id %}"
-                               class="btn btn-palegreen btn-sm pull-right btn-follow">
-                                <i class="fa fa-check"></i> BYE
-                            </a>
-                            {% else %}
-                            <a href="{% url 'accounts:pick' user_selected.id %}"
-                               class="btn btn-palegreen btn-sm pull-right btn-follow">
-                                <i class="fa fa-check"></i> PICK ME
-                            </a>
-                            {% endif %}
-                        </div>
-                        <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
-                            {% if user == user_selected %}
-                            <a href="{% url 'accounts:update' user_selected.id %}"
-                               class="btn btn-palegreen btn-sm pull-right btn-follow">
-                                <i class="fa fa-check"></i> UPDATE
-                            </a>
-                            {% endif %}
-                        </div>
-                        <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
-</div>
 
+    <div class="container">
+        <div class="col-md-12">
+            <div class="profile-container">
+                <div class="profile-header row">
+                    <div class="col-md-12 col-sm-12 profile-info">
+                        <div class="header-information">
+                            <h5>MY PICK</h5>
+                            {% for user in user_selected.pick.all %}
+                                <a href="{% url 'accounts:user_page' user.id %}"> {{user}}, </a>
+                            {% endfor %}
+                            <hr>
+                            <h5>PICKERS</h5>
+                            {% for user in user_selected.picker.all %}
+                                <a href="{% url 'accounts:user_page' user.id %}"> {{user}}, </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
+                        <a href="#"
+                           class="btn btn-palegreen btn-sm pull-right btn-follow" data-id="user_selected.id">
+                            <i class="fa fa-check" data-id="user_selected.id"></i> SEND
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
+                        <a href="{% url 'accounts:clean' user_selected.id %}"
+                           class="btn btn-palegreen btn-sm pull-right btn-follow">
+                            <i class="fa fa-check"></i> CLEAN PICK
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4 inlinestats-col">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+</div>
 {% endblock %}
